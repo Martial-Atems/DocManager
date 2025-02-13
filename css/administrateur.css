@@ -1,133 +1,171 @@
-body {
+/* administrateur.css */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-/* Sidebar pour la navigation vertical */
-.sidebar {
-    width: 60px;
-    height: 100vh;
-    background: #333;
-    color: white;
-    transition: width 0.3s;
-    overflow: hidden;
-    position: fixed;
+body {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
 }
 
-.sidebar.expanded {
-    width: 200px;
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    padding-top: 60px;
+    position: fixed;
+    height: 100%;
+    transition: width 0.3s;
+    border-right: 1px solid #ccc;
 }
 
-.menu-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-    margin: 0px 10px;
+.sidebar.collapsed {
+    width: 80px;
 }
 
-ul {
+.sidebar ul {
     list-style: none;
     padding: 0;
-    width: 100%;
 }
 
-li {
+.sidebar li {
     display: flex;
     align-items: center;
-    padding: 10px;
-}
-
-li a {
-    text-decoration: none;
+    padding: 15px 20px;
+    cursor: pointer;
     color: #fff;
+    transition: background-color 0.3s;
 }
 
-.icon {
-    margin-right: 10px;
+.sidebar li:hover {
+    background-color: #555;
 }
 
-.text {
+.sidebar i {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.sidebar .text {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed .text {
     display: none;
 }
 
-.sidebar.expanded .text {
-    display: inline;
-}
-
-/* Navbar pour le logo et la recherche */
-.content {
-    margin-left: 60px;
-    padding: 20px;
-    flex-grow: 1;
-    background-color: #333;
-    height: 35px;
-}
-
-header img {
-    position: relative;
-    top: -12px;
-    width: 60px;
+/* Navbar */
+.navbar {
     height: 60px;
-    border-radius: 50%;
-}
-
-header .searchBarre {
-    position: relative;
-    left: 20%;
-    top: -60px;
-}
-
-header .searchBarre input {
-    height: 34px;
-    width: 34%;
-    color: #fff;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
     background-color: #333;
-    border-color: #fff;
-    border-radius: 10px;
-    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+    z-index: 1000;
 }
 
-header .searchBarre button {
-    height: 34px;
-    width: 80px;
-    background-color: #333;
-    border-color: #fff;
-    border-radius: 10px;
-    font-size: 20px;
+.navbar .menu-icon {
     cursor: pointer;
 }
 
-header .searchBarre button:hover{
-    border-color: green;
+.navbar .menu-icon i {
+    font-size: 24px;
     color: #fff;
-    background-color: green;
 }
 
-/* Responsiviter */
-@media screen and (max-width: 768px) {
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo img {
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.navbar .logo span {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .search-box {
+    display: flex;
+    max-width: 300px;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.navbar .search-box input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.navbar .search-box button {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navbar .search-box button:hover {
+    background-color: #e0e0e0;
+}
+
+.navbar .icons i {
+    font-size: 20px;
+    color: #fff;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.navbar .icons i:hover {
+    color: red;
+}
+
+/* Content */
+.content {
+    margin-left: 250px;
+    margin-top: 60px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    flex: 1;
+}
+
+.content.collapsed {
+    margin-left: 80px;
+}
+
+@media (max-width: 600px) {
     .sidebar {
-        width: 50px;
+        width: 80px;
     }
-    .sidebar.expanded {
-        width: 150px;
-    }
-    .content {
-        margin-left: 50px;
-    }
-    .sidebar.expanded ~ .content {
-        margin-left: 150px;
-    }
-    .text {
+
+    .sidebar .text {
         display: none;
     }
-    .sidebar.expanded .text {
-        display: inline;
+
+    .content {
+        margin-left: 80px;
+    }
+
+    .navbar .search-box {
+        display: none;
     }
 }

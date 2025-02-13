@@ -3,35 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidebar Rétractable</title>
+    <title>YouTube-like Sidebar & Navbar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/administrateur.css">
-    <script defer src="../javaScript/administrateur.js"></script>
 </head>
 <body>
-    <!-- Sidebar/ barre de navigation verticale -->
-    <div class="sidebar">
-        <button class="menu-btn" onclick="toggleSidebar()">&#9776;</button>
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"></i> Rechercher</button>
+        </div>
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Profil"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
         <ul>
-            <li><a href="#"><span class="icon">🏠</span><span class="text">Accueil</span></a></li>
-            <li><a href="#"><span class="icon">📂</span><span class="text">Documents</span></a></li>
-            <li><a href="#"><span class="icon">⚙️</span><span class="text">Paramètres</span></a></li>
-            <li><a href="#"><span class="icon">❓</span><span class="text">Aide</span></a></li>
+            <li><i class="fas fa-home"></i><span class="text">Accueil</span></li>
+            <li><i class="fas fa-fire"></i><span class="text">Tendances</span></li>
+            <li><i class="fas fa-play-circle"></i><span class="text">Abonnements</span></li>
+            <li><i class="fas fa-folder"></i><span class="text">Bibliothèque</span></li>
+            <li><i class="fas fa-clock"></i><span class="text">Historique</span></li>
+            <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li>
+            <li><i class="fas fa-cog"></i><span class="text">Paramètres</span></li>
         </ul>
     </div>
 
-    <!-- navbar -->
-    <header class="content d-flex align-items-center justify-content-between p-3 text-white">
-        <img src="../image/img.webp" alt="logo" width="100" height="100">
-        <div class="searchBarre">
-            <form>
-                <input type="search" placeholder="Search"> <button type="submit">Search</button>
-            </form>
-        </div>
-    </header>
-
-    <div class="content1">
-        <h1>Bienvenue</h1>
-        <p>Ceci est un exemple de sidebar rétractable.</p>
+    <div class="content" id="content">
+        <h1>Bienvenue sur votre interface utilisateur de DocManager</h1>
+        <p>Explorez les fonctionnalités et personnalisez selon vos besoins.</p>
     </div>
+
+    <!-- Scripts -->
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../javaScript/administrateur.js"></script>
 </body>
 </html>

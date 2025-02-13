@@ -1,11 +1,6 @@
 function toggleSidebar() {
-    const sidebar = document.querySelector('.sidebar');
-    sidebar.classList.toggle('expanded');
-    
-    const content = document.querySelector('.content');
-    if (sidebar.classList.contains('expanded')) {
-        content.style.marginLeft = '200px';
-    } else {
-        content.style.marginLeft = '60px';
-    }
+    const sidebar = document.getElementById('sidebar');
+    const content = document.getElementById('content');
+    sidebar.classList.toggle('collapsed');
+    content.classList.toggle('collapsed');
 }

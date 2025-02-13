@@ -1,0 +1,133 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Sidebar pour la navigation vertical */
+.sidebar {
+    width: 60px;
+    height: 100vh;
+    background: #333;
+    color: white;
+    transition: width 0.3s;
+    overflow: hidden;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar.expanded {
+    width: 200px;
+}
+
+.menu-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    margin: 0px 10px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.icon {
+    margin-right: 10px;
+}
+
+.text {
+    display: none;
+}
+
+.sidebar.expanded .text {
+    display: inline;
+}
+
+/* Navbar pour le logo et la recherche */
+.content {
+    margin-left: 60px;
+    padding: 20px;
+    flex-grow: 1;
+    background-color: #333;
+    height: 35px;
+}
+
+header img {
+    position: relative;
+    top: -12px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+header .searchBarre {
+    position: relative;
+    left: 20%;
+    top: -60px;
+}
+
+header .searchBarre input {
+    height: 34px;
+    width: 34%;
+    color: #fff;
+    background-color: #333;
+    border-color: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+header .searchBarre button {
+    height: 34px;
+    width: 80px;
+    background-color: #333;
+    border-color: #fff;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+header .searchBarre button:hover{
+    border-color: green;
+    color: #fff;
+    background-color: green;
+}
+
+/* Responsiviter */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 50px;
+    }
+    .sidebar.expanded {
+        width: 150px;
+    }
+    .content {
+        margin-left: 50px;
+    }
+    .sidebar.expanded ~ .content {
+        margin-left: 150px;
+    }
+    .text {
+        display: none;
+    }
+    .sidebar.expanded .text {
+        display: inline;
+    }
+}

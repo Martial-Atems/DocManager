@@ -1,0 +1,116 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.infosBarre {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    padding: 10px 0;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.infosBarre a {
+    color: white;
+    text-decoration: none;
+}
+
+.langue select {
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px;
+}
+
+/* Entête de la page*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #031164;
+    padding: 15px;
+    flex-wrap: wrap;
+}
+
+header img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.barreDeNavigation ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+}
+
+.barreDeNavigation ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.btnSercice {
+    background: #031164;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Formulaire de connexion*/
+.formInscription {
+    width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.formInscription form input, .formInscription form button {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.formInscription form a {
+    text-decoration: none;
+}
+
+.formInscription form button {
+    background: #031164;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.formInscription form button:hover {
+    background: green;
+}
+
+/* Responsivité */
+@media screen and (max-width: 768px) {
+    .barreDeNavigation ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infosBarre {
+        flex-direction: column;
+    }
+
+    .formInscription {
+        width: 80%;
+    }
+}

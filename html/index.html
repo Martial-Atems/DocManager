@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="infosBarre d-flex justify-content-between p-2">
+        <div class="adresseMail">
+            <a href="mailto:martialatems128@gmail.com">martialatems128@gmail.com</a>
+        </div>
+        <div class="position">
+            <h5>DSCHANG, CAMEROUN</h5>
+        </div>
+        <div class="numero">
+            +237 678 518 089
+        </div>
+        <div class="inscription">
+            <a href="connection.html">Se connecter</a>
+        </div>
+        <div class="langue">
+            <label for="language" class="visually-hidden">Choisissez votre langue :</label>
+            <select name="language" id="language" class="form-select" title="Choisissez votre langue">
+                <option value="Français">Français</option>
+                <option value="Anglais">Anglais</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- En-tête de page -->
+    <header class="d-flex align-items-center justify-content-between p-3 text-white">
+       <img src="../image/img.webp" alt="logo" width="100" height="100"> 
+       
+       <nav class="barreDeNavigation navbar navbar-expand-lg">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link text-white" href="#">Accueil</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">À Propos</a>
+                    <!-- Les sous menu de navigation -->
+                    <ul class="dropdown-menu visually-hidden">
+                        <li><a class="dropdown-item" href="#">Notre mission</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">Services</a>
+                    <ul class="dropdown-menu visually-hidden">
+                        <li><a class="dropdown-item" href="#">Consultation</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" data-bs-toggle="dropdown">Social</a>
+                    <ul class="dropdown-menu visually-hidden">
+                        <li><a class="dropdown-item" href="#">Réseaux sociaux</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a class="nav-link text-white" href="#">Contact</a></li>
+            </ul>
+       </nav>
+       
+       <button class="btnSercice">Demandez un service</button>
+    </header>
+
+    <!-- Section des slides -->
+    <div class="slideshow-container">
+        <div class="slide active">
+            <img src="../image/image3.jpg" alt="Campus IUC de Dschang" class="img-fluid" height="10%">
+            <div class="title text-center">
+                <h3> Gérez vos documents avec facilité et efficacité !
+                    Que vous soyez étudiant, enseignant, ou membre du comité pédagogique</h3>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="../image/image1.png" alt="Filière science de la santé" class="img-fluid" height="10%">
+            <div class="title text-center">
+                <h3>Notre application est conçue pour simplifier chaque étape du processus.</h3>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="../image/image2.jpg" alt="Filière Industrielles et technologiques" class="img-fluid" height="10%">
+            <div class="title text-center">
+                <h3>Connectez-vous pour soumettre et suivre l'avancement des documents en toute simplicité.</h3>
+            </div>
+        </div>
+        
+        <!-- Boutons de navigation -->
+         <a href="#" class="prev" onclick="changeSlide(-1)">&#10094;</a>
+         <a href="#" class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../javaScript/script.js"></script>
+</body>
+</html>

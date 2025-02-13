@@ -1,0 +1,173 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+.infosBarre {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #000;
+    color: white;
+    padding: 10px 0;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.infosBarre a {
+    color: white;
+    text-decoration: none;
+}
+
+.langue select {
+    background: #000;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 5px;
+}
+
+/* Entête de la page*/
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #031164;
+    padding: 15px;
+    flex-wrap: wrap;
+}
+
+header img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.barreDeNavigation ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    padding: 0;
+}
+
+.barreDeNavigation ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.btnSercice {
+    background: #031164;
+    color: white;
+    border: 2px solid white;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Slideshow pour les slide de la page*/
+.slideshow-container {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+    position: relative;
+}
+
+.slide.active {
+    display: block;
+    animation: fade 1s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+}
+
+@keyframes fade {
+    from { opacity: 0.4; }
+    to { opacity: 1; }
+}
+
+.title {
+    position: absolute;
+    bottom: 400px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+}
+
+/* Navigation du diaporama */
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    color: white;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.prev:hover, .next:hover {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+/* Formulaire */
+.formInscription {
+    width: 40%;
+    margin: 20px auto;
+    padding: 20px;
+    background: #f8f8f8;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.formInscription form input, .formInscription form button {
+    width: 90%;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.formInscription form button {
+    background: #031164;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.formInscription form button:hover {
+    background: green;
+}
+
+/* Responsivité */
+@media screen and (max-width: 768px) {
+    .title {
+        bottom: 20px;
+    }
+
+    .barreDeNavigation ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .infosBarre {
+        flex-direction: column;
+    }
+
+    .formInscription {
+        width: 80%;
+    }
+}

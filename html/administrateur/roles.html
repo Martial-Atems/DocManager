@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roles</title>
+
+    <!-- Liens font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/administrateur/roles.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"> <span>~</span></i></button>
+        </div>
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Profil"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <hr>
+        <ul>
+            <li><a href="../administrateur/dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="../administrateur/utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
+            <li><a href="../administrateur/roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Rôle</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Type de document</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Document</span></a></li>
+        </ul>
+            <hr>
+        <ul>
+            <li><i class="fas fa-clock"></i><span class="text">Historique</span></li>
+            <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li>
+            <li><i class="fas fa-cog"></i><span class="text">Paramètres</span></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+
+        <!-- Modal pour l'ajout d'un role -->
+        <div class="modal fade" id="modalAjoutRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelRole"><i class="fa-solid fa-plus"></i><span>Ajouter un rôle</span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Pour afficher le message de succes -->
+                    <small id="successMessage"> </small>
+
+                    <form id="formAjoutRole">
+                        <div class="mb-3">
+                            <label for="nomRole" class="col-form-label">Nom du rôle:</label>
+                            <input type="text" class="form-control" id="nomRole" name="nomRole" placeholder="Entrer le nom du role">
+                            <small class="error_message" id="nomRoleError">Ce champs ne doit pas être vide!!</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary" form="formAjoutRole">Ajouter</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal pour la modification d'un role -->
+        <div class="modal fade" id="modalUpdateRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelModifRole">Modifier un rôle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Pour afficher le message de succes -->
+                    <small id="successMessage"> </small>
+                    <small id="nomRoleErrorEdit"> </small>
+
+                    <form id="formModifRole">
+                        <input type="text" id="roleId" name="roleId">
+                        <div class="mb-3">
+                            <label for="modNomRole" class="col-form-label">Nom du rôle:</label>
+                            <input type="text" class="form-control" id="nom_role" name="nom_role">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary updateDataRole" form="formModifRole">Modifier</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Tableau pour la gestion des roles -->
+        <div class="container mt-5">
+            <h3>Rôles</h3>
+            <br>
+            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalAjoutRole">
+                <i class="fa-solid fa-plus"></i><span>Ajouter un rôle</span>
+            </button>
+            <table class="table table-bordered table-striped table-primary table-hover">
+                <thead>
+                    <tr class="col-primary">
+                        <th>ID</th>
+                        <th>NOM DU ROLE</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <!-- corps du tableau -->
+                <tbody id="role-table-body">
+                    <!-- Afficharge des donnees -->
+                </tbody>
+            </table>
+        </div>        
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../javaScript/jquery.js"></script>
+    <script src="../../javaScript/utilisateurs.js"></script>
+    <script src="../../javaScript/model/RolesModel.js"></script>
+</body>
+</html>

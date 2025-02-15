@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <!-- Liens font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/administrateur/dashboard.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"> ~</i></button>
+        </div>
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Profil"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <hr>
+        <ul>
+            <li><a href="../administrateur/dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="../administrateur/utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
+            <li><a href="../administrateur/roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Roles</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Type de document</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Document</span></a></li>
+        </ul>
+            <hr>
+        <ul>
+            <li><i class="fas fa-clock"></i><span class="text">Historique</span></li>
+            <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li>
+            <li><i class="fas fa-cog"></i><span class="text">Paramètres</span></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+        <h1>Bienvenue sur votre interface utilisateur de DocManager</h1>
+        <p>Explorez les fonctionnalités et personnalisez selon vos besoins.</p>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../javaScript/utilisateurs.js"></script>
+
+</body>
+</html>

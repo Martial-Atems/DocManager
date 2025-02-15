@@ -20,6 +20,14 @@ body {
     height: 100%;
     transition: width 0.3s;
     border-right: 1px solid #ccc;
+    overflow-y: auto; /* Active le défilement vertical */
+}
+
+.sidebar hr {
+    color: #fff;
+    width: 80%;
+    margin-left: 25px;
+    margin-right: 20px;
 }
 
 .sidebar.collapsed {
@@ -38,6 +46,11 @@ body {
     cursor: pointer;
     color: #fff;
     transition: background-color 0.3s;
+}
+
+.sidebar li a {
+    color: #fff;
+    text-decoration: none;
 }
 
 .sidebar li:hover {
@@ -111,6 +124,8 @@ body {
     flex: 1;
     padding: 8px 12px;
     border: 1px solid #ccc;
+    height: 35px;
+    width: 30%;
     border-radius: 4px 0 0 4px;
     outline: none;
 }
@@ -120,6 +135,8 @@ body {
     border: 1px solid #ccc;
     background-color: #f0f0f0;
     border-radius: 0 4px 4px 0;
+    height: 35px;
+    width: 30%;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -127,6 +144,10 @@ body {
 .navbar .search-box button:hover {
     background-color: #e0e0e0;
 }
+
+.navbar .search-box button span {
+    display: none;
+ }
 
 .navbar .icons i {
     font-size: 20px;
@@ -139,7 +160,7 @@ body {
     color: red;
 }
 
-/* Content */
+/* Content/ Contenue de la page*/
 .content {
     margin-left: 250px;
     margin-top: 60px;
@@ -152,7 +173,17 @@ body {
     margin-left: 80px;
 }
 
+/* texte d'erreur */
+.error_message {
+    display: none;
+    color: red;
+}
+
 @media (max-width: 600px) {
+    .navbar .logo {
+        padding: 0 40px;
+    }
+
     .sidebar {
         width: 80px;
     }
@@ -166,6 +197,52 @@ body {
     }
 
     .navbar .search-box {
+        position: relative;
+        top: 70px;
+    }
+
+    .navbar .search-box input {
+        height: 35px;
+        width: 30%;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+    }
+}
+
+/* Styles pour rendre le tableau responsive */
+.container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Permet le défilement horizontal sur les petits écrans */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Cache certaines colonnes sur les petits écrans */
+@media (max-width: 768px) {
+    .hide-on-small {
+        display: none;
+    }
+}
+
+/* Ajustement des tailles de texte et des paddings pour mobile */
+@media (max-width: 576px) {
+    .table th, .table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    
+    .btn span {
         display: none;
     }
 }

@@ -38,14 +38,14 @@
         </div> -->
         <hr>
         <ul>
-            <li><a href="../administrateur/dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
-            <li><a href="../administrateur/utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
-            <li><a href="../administrateur/roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Roles</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
+            <li><a href="roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Roles</span></a></li>
+            <li><a href="faculter.html"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
+            <li><a href="filiere.html"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
             <li><a href="#"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Type de document</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Document</span></a></li>
+            <li><a href="type_document.html"><i class="fa-solid fa-file"></i><span class="text">Type de document</span></a></li>
+            <li><a href="document.html"><i class="fa-solid fa-book"></i><span class="text">Document</span></a></li>
         </ul>
             <hr>
         <ul>
@@ -77,7 +77,7 @@
                             <div class="mb-3">
                                 <label for="nom" class="col-form-label">Nom:</label>
                                 <input type="text" class="form-control" id="nom" name="nom_user" placeholder="Entrer votre nom">
-                                <small class="error_message" id="nomError">Le nom ne doit pas être vide et doit avoir au moins cinq caractères</small>
+                                <small class="error_message" id="nomError">Le nom ne doit pas être vide </small>
                             </div>
                             <div class="mb-3">
                                 <label for="prenom" class="col-form-label">Prénom:</label>
@@ -118,7 +118,7 @@
                             <div class="mb-3">
                                 <label for="password" class="col-form-label">Mot de passe:</label>
                                 <input type="password" class="form-control" id="password" autocomplete="on" name="mot_de_passe" placeholder="Entrer votre mot de passe">
-                                <small class="error_message" id="passwordError">Le mot de passe n'est pas fort !</small>
+                                <small class="error_message" id="passwordError">Inserer un mots de passe !</small>
                             </div>
                         </form>
                     </div>
@@ -166,6 +166,28 @@
     <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script src="../../javaScript/jquery.js"></script>
     <script src="../../javaScript/utilisateurs.js"></script>
+    <script src="../../javaScript/model/UsersModel.js"></script>
+
+    <script>
+        // Script pour afficher les Roles sur le select d'ajout des utilisateurs 
+        window.onload = function() {
+            const roleSelect = document.getElementById('roleSelect');
+
+            // Récupère les rôles depuis l'API backend
+            fetch('http://localhost:5000/roles')
+            .then(response => response.json())
+            .then(roles => {
+                // Ajoute chaque rôle comme une option dans le select
+                roles.forEach(function(role) {
+                    let option = document.createElement('option');
+                    option.value = role.id_role;  // Utilise l'id_role comme valeur
+                    option.textContent = role.nomRole;  // Affiche le nom du rôle
+                    roleSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Erreur:', error));
+        } 
+    </script>
 
 </body>
 </html>

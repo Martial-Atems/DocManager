@@ -1,6 +1,6 @@
 import express from 'express';
-import req from 'express/lib/request.js';
-import res from 'express/lib/response.js';
+// import req from 'express/lib/request.js';
+// import res from 'express/lib/response.js';
 import connection  from '../../config/connection.js';
 
 const router = express.Router();
@@ -35,8 +35,6 @@ router.get('/', (req, res) => {
 // Route pour modifier un role
 router.patch('/:roleId', (req, res) => {
     const roleId = parseInt(req.params.roleId);
-        console.log(req.params.roleId);
-        console.log(`Requête reçue pour mettre à jour le role avec l'ID : ${roleId}`);
     const {nom_role} = req.body;
 
     // Requette sql pour la mise a jour
@@ -45,13 +43,27 @@ router.patch('/:roleId', (req, res) => {
     // Execution de la requette sql
     connection.query(sql, [nom_role, roleId], (err, result) => {
         if(result) {
-            console.log('Role mis à jour avec succès');
             res.status(200).json({ message: 'Role mis à jour avec succès' });
         } 
         if (err) {
             console.log('erreur');
         }
     });
+});
+
+// Route pour supprimer un Role
+router.delete('/:roleId', (req, res) => {
+    const roleId = parseInt(req.params.roleId);
+   
+    const query = 'DELETE FROM roles WHERE id_role = ?';
+    connection.query(query, [roleId], (err, result) => {
+        if (result) {
+            res.status(200).json({ message: 'Role supprimer avec succès' }); 
+        }
+        if (err) {
+            console.log('erreur');
+        }
+   });
 });
 
 

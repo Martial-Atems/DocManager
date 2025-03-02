@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- Liens font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/administrateur/document.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"> <span>~</span></i></button>
+        </div>
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Profil"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <hr>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
+            <li><a href="roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Rôle</span></a></li>
+            <li><a href="faculter.html"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
+            <li><a href="filiere.html"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
+            <li><a href="type_document.html"><i class="fa-solid fa-file"></i><span class="text">Type de document</span></a></li>
+            <li><a href="document.html"><i class="fa-solid fa-book"></i><span class="text">Document</span></a></li>
+        </ul>
+            <hr>
+        <ul>
+            <li><i class="fas fa-clock"></i><span class="text">Historique</span></li>
+            <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li>
+            <li><i class="fas fa-cog"></i><span class="text">Paramètres</span></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+
+        <!-- Modal pour l'ajout d'un role -->
+        <div class="modal fade" id="modalAjoutRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelRole"><i class="fa-solid fa-plus"></i><span>Ajouter un rôle</span></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Pour afficher le message de succes -->
+                    <small id="successMessage"> </small>
+
+                    <form id="formAjoutRole">
+                        <div class="mb-3">
+                            <label for="nomRole" class="col-form-label">Nom du rôle:</label>
+                            <input type="text" class="form-control" id="nomRole" name="nomRole" placeholder="Entrer le nom du role">
+                            <small class="error_message" id="nomRoleError">Ce champs ne doit pas être vide!!</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                <button type="submit" class="btn btn-primary" form="formAjoutRole">Ajouter</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Tableau pour la gestion des documents -->
+        <div class="container mt-5">
+            <h2>Liste des Documents</h2>
+            <br>
+            <form>
+                <div class="mb-3">
+                    <label for="typeDocSelect" class="col-form-label typeDocument bg-primary">Type de document:</label>
+                    <select  name="id_typedoc" id="typeDocSelect" class="form-control" title="Selectionez les Documents par type">
+                        <option value="All">All</option>
+                        <!-- Les types de document seront ajoutés ici -->
+                    </select>
+                </div>
+            </form>
+            <table class="table table-bordered table-striped table-hover table-primary">
+                <thead>
+                    <tr class="col-primary">
+                        <th>ID</th>
+                        <th>NOM(S) ET PRENOM(S)</th>
+                        <th>TYPE DE DOCUMENT</th>
+                        <th>LIBELLE</th>
+                        <th>TITRE</th>
+                        <th>ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody id="documents-table-body">
+                    <!-- Contenue de la liste des docoments -->
+                </tbody>
+            </table>
+        </div>        
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../javaScript/jquery.js"></script>
+    <script src="../../javaScript/utilisateurs.js"></script>
+    <script src="../../javaScript/model/DocumentModel.js"></script>
+    <!-- Script pour afficher les documents -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchDocuments(); // Initial fetch to load all documents
+
+            // Récupère et affiche les types de documents dans le select
+            fetch('http://localhost:5000/typedocuments')
+                .then(response => response.json())
+                .then(typeDocument => {
+                    const typeDocSelect = document.getElementById('typeDocSelect');
+
+                    typeDocument.forEach(function(typeDoc) {
+                        let option = document.createElement('option');
+                        option.value = typeDoc.libelle_type_doc;  // Utilise le nom_typedoc comme valeur
+                        option.textContent = typeDoc.libelle_type_doc;  // Affiche le nom du type de document
+
+                        typeDocSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Erreur:', error));
+
+            // Ajoute un event listener sur le select pour filtrer les documents
+            document.getElementById('typeDocSelect').addEventListener('change', function() {
+                fetchDocuments(this.value); // Appelle fetchDocuments avec la valeur sélectionnée
+            });
+        });
+
+        function fetchDocuments(filterType = 'All') {
+            fetch('http://localhost:5000/documents')
+            .then(response => response.json())
+            .then(documents => {
+                const tableBody = document.getElementById('documents-table-body');
+                tableBody.innerHTML = ''; // Clear existing rows
+
+                documents.forEach(doc => {
+                    if (filterType === 'All' || doc.nom_typedoc === filterType) {
+                        // Création d'une nouvelle ligne pour chaque document qui correspond au filtre
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${doc.id_doc}</td>
+                            <td>${doc.nom_user} ${doc.prenom_user}</td>
+                            <td>${doc.nom_typedoc}</td>
+                            <td>${doc.libelledoc}</td>
+                            <td>${doc.nomdoc}</td>
+                            <td> 
+                                <button type="button" class="btn btn-success btn-sm" data-id="${doc.id_doc}" data-nomdoc="${doc.nomdoc}" onclick="downloadFunction(this)">
+                                    Télécharger
+                                </button> 
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    }
+                });
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+</body>
+</html>

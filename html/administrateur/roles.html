@@ -33,14 +33,14 @@
     <div class="sidebar" id="sidebar">
         <hr>
         <ul>
-            <li><a href="../administrateur/dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
-            <li><a href="../administrateur/utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
-            <li><a href="../administrateur/roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Rôle</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
+            <li><a href="roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Rôle</span></a></li>
+            <li><a href="faculter.html"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
+            <li><a href="filiere.html"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
             <li><a href="#"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Type de document</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Document</span></a></li>
+            <li><a href="type_document.html"><i class="fa-solid fa-file"></i><span class="text">Type de document</span></a></li>
+            <li><a href="document.html"><i class="fa-solid fa-book"></i><span class="text">Document</span></a></li>
         </ul>
             <hr>
         <ul>
@@ -76,36 +76,6 @@
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
                 <button type="submit" class="btn btn-primary" form="formAjoutRole">Ajouter</button>
-                </div>
-            </div>
-            </div>
-        </div>
-
-        <!-- Modal pour la modification d'un role -->
-        <div class="modal fade" id="modalUpdateRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabelModifRole">Modifier un rôle</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <!-- Pour afficher le message de succes -->
-                    <small id="successMessage"> </small>
-                    <small id="nomRoleErrorEdit"> </small>
-
-                    <form id="formModifRole">
-                        <input type="text" id="roleId" name="roleId">
-                        <div class="mb-3">
-                            <label for="modNomRole" class="col-form-label">Nom du rôle:</label>
-                            <input type="text" class="form-control" id="nom_role" name="nom_role">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-primary updateDataRole" form="formModifRole">Modifier</button>
                 </div>
             </div>
             </div>

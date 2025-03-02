@@ -6,7 +6,7 @@ const connection = mysql.createPool({
     user: "root",
     password: "",
     port: 3306,
-    database: "projet_bd",
+    database: "DocManager",
 });
 
 export default connection;

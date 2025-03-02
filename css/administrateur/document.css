@@ -1,0 +1,262 @@
+/* administrateur.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: #333;
+    padding-top: 60px;
+    position: fixed;
+    height: 100%;
+    transition: width 0.3s;
+    border-right: 1px solid #ccc;
+    overflow-y: auto; /* Active le défilement vertical */
+}
+
+.sidebar hr {
+    color: #fff;
+    width: 80%;
+    margin-left: 25px;
+    margin-right: 20px;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar li {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.sidebar li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar li:hover {
+    background-color: #555;
+}
+
+.sidebar i {
+    font-size: 20px;
+    margin-right: 20px;
+}
+
+.sidebar .text {
+    font-size: 16px;
+    white-space: nowrap;
+}
+
+.sidebar.collapsed .text {
+    display: none;
+}
+
+/* Navbar */
+.navbar {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #333;
+    border-bottom: 1px solid #ccc;
+    z-index: 1000;
+}
+
+.navbar .menu-icon {
+    cursor: pointer;
+}
+
+.navbar .menu-icon i {
+    font-size: 24px;
+    color: #fff;
+}
+
+.navbar .logo {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .logo img {
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.navbar .logo span {
+    color: #fff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar .search-box {
+    display: flex;
+    max-width: 300px;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.navbar .search-box input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    height: 35px;
+    width: 30%;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.navbar .search-box button {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+    border-radius: 0 4px 4px 0;
+    height: 35px;
+    width: 30%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.navbar .search-box button:hover {
+    background-color: #e0e0e0;
+}
+
+.navbar .search-box button span {
+    display: none;
+ }
+
+.navbar .icons i {
+    font-size: 20px;
+    color: #fff;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.navbar .icons i:hover {
+    color: red;
+}
+
+/* Content/ Contenue de la page */
+.content {
+    margin-left: 250px;
+    margin-top: 60px;
+    padding: 20px;
+    transition: margin-left 0.3s;
+    flex: 1;
+}
+
+.content.collapsed {
+    margin-left: 80px;
+}
+
+/* texte d'erreur */
+.error_message, #nomRoleErrorEdit {
+    display: none;
+    color: red;
+}
+
+.typeDocument {
+    display: none;
+}
+
+/* text de succes */
+#successMessage {
+    display: none; 
+    color: green; 
+    font-weight: bold; 
+    text-align: center; 
+    width: 300px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 600px) {
+    .navbar .logo {
+        padding: 0 40px;
+    }
+
+    .sidebar {
+        width: 80px;
+    }
+
+    .sidebar .text {
+        display: none;
+    }
+
+    .content {
+        margin-left: 80px;
+    }
+
+    .navbar .search-box {
+        position: relative;
+        top: 70px;
+    }
+
+    .navbar .search-box input {
+        height: 35px;
+        width: 30%;
+        border-radius: 4px 0 0 4px;
+        outline: none;
+    }
+}
+
+/* Styles pour rendre le tableau responsive */
+.container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Permet le défilement horizontal sur les petits écrans */
+.table-responsive {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+/* Cache certaines colonnes sur les petits écrans */
+@media (max-width: 768px) {
+    .hide-on-small {
+        display: none;
+    }
+}
+
+/* Ajustement des tailles de texte et des paddings pour mobile */
+@media (max-width: 576px) {
+    .table th, .table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 6px 10px;
+    }
+    
+    .btn span {
+        display: none;
+    }
+}

@@ -2,7 +2,7 @@
 $server = "localhost";
 $user = "root";
 $mdp = "";
-$dbname = "projet_bd";
+$dbname = "DocManager";
 
 try{
     $con = new PDO("mysql:host=$server;dbname=$dbname", $user, $mdp);

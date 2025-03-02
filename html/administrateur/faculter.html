@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculter</title>
+
+    <!-- Liens font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/administrateur/faculter.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"> <span>~</span></i></button>
+        </div>
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Profil"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <hr>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
+            <li><a href="roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Rôle</span></a></li>
+            <li><a href="faculter.html"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
+            <li><a href="filiere.html"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
+            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
+            <li><a href="type_document.html"><i class="fa-solid fa-file"></i><span class="text">Type de document</span></a></li>
+            <li><a href="document.html"><i class="fa-solid fa-book"></i><span class="text">Document</span></a></li>
+        </ul>
+            <hr>
+        <ul>
+            <li><i class="fas fa-clock"></i><span class="text">Historique</span></li>
+            <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li>
+            <li><i class="fas fa-cog"></i><span class="text">Paramètres</span></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+
+        <!-- Modal pour l'ajout d'une faculter -->
+    <div class="modal fade" id="modalAjoutFacuter" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabelAjoutFac"> <i class="fa-solid fa-plus"></i> Ajouter une faculter</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <!-- Pour afficher le message de succes -->
+                <small id="successMessage"> </small>
+
+                <form id="formAjouteFac">
+                    <div class="mb-3">
+                        <label for="nomFac" class="col-form-label">Nom de la faculter:</label>
+                        <input type="text" class="form-control" id="nomFac" name="nom_faculter" placeholder="Entrer le nom de la faculter">
+                        <small class="error_message" id="nomFacError">Ce champs ne doit pas être vide</small>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary" form="formAjouteFac">Ajouter</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+        <!-- Tableau pour la gestion des faculter -->
+    <div class="container mt-5">
+        <h3>Faculters</h3>
+        <br>
+        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalAjoutFacuter">
+            <i class="fa-solid fa-plus"></i><span>Ajouter une faculter</span>
+        </button>
+        <table class="table table-bordered table-striped table-primary table-hover">
+            <thead>
+                <tr class="col-primary">
+                    <th>ID</th>
+                    <th>NOM DE LA FACULTER</th>
+                    <th>ACTION</th>
+                </tr>
+            </thead>
+            <!-- corps du tableau -->
+            <tbody id="faculter-table-body">
+                <!-- Afficharge des donnees -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../javaScript/jquery.js"></script>
+    <script src="../../javaScript/utilisateurs.js"></script>
+    <script src="../../javaScript/model/FaculterModel.js"></script>
+</body>
+</html>

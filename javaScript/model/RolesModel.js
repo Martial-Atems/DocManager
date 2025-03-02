@@ -19,8 +19,8 @@ document.getElementById('formAjoutRole').addEventListener("submit", async functi
     const nomRoleError = document.getElementById('nomRoleError');
     hideErrorModal(nomRoleError);
 
-    if (nomRole === "" || nomRole.length < 5) {
-        showErrorModal(nomRoleError, 'Le nom du rôle doit contenir au moins 5 caractères.');
+    if (nomRole === "") {
+        showErrorModal(nomRoleError, 'Le nom du rôle ne doit pas etre vide !');
         formValidModal = false;
     }
 
@@ -68,90 +68,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td id="roleId">${rol.id_role}</td>
                 <td>${rol.nomRole}</td>
                 <td>
-                    <button type="button" class="btn btn-warning btn-sm editRoleBtn"
-                    data-bs-toggle="modal" data-bs-target="#modalUpdateRole"
-                     onclick="updateRoleBtn()"
-                    data-id="${rol.id_role}"
-                    data-nom="${rol.nomRole}"
-                    >Modifier</button> 
-                    <button type="button" class="btn btn-danger btn-sm deleteRoleBtn"
-                    data-bs-toggle="modal" data-bs-target="#modalDeleteRole"
-                      onclick="deleteRoleBtn()"
-                    data-id="${rol.id_role}"
-                    >Supprimer</button> 
+                  
+                    <a href="/html/administrateur/updateRole.html?id=${rol.id_role}&nom=${rol.nomRole}" style = "text-decoration: none;" class="btn btn-primary btn-sm" > Modifier </a>
+
+                    <a href="/html/administrateur/deleteRole.html?id=${rol.id_role}" style = "text-decoration: none;" class="btn btn-danger btn-sm deleteRoleBtn" > Supprimer </a>
+                
                 </td>
             `;
             tableBody.appendChild(row);
         });
     });
-});
-
-// // Fonction pour afficher les information du role sur le formulaire de modification du role
-// function updateRoleBtn() {
-//     $('.editRoleBtn').on('click', function() {
-//         // Recuperation des donnees de la ligne du tableau
-//         const roleId = $(this).data('id');
-//         const nomRole = $(this).data('nom');
-        
-//         // Remplissage du formulaire de modification du role
-//         $('#roleId').val(roleId);
-//         $('#nom_role').val(nomRole);
-//     })
-
-// } 
-document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.editRoleBtn').forEach(button => {
-        button.addEventListener('click', function() {
-            const roleId = this.dataset.id; // Correction ici
-
-            alert(roleId);
-            
-            // Requête AJAX pour récupérer les infos du rôle
-            fetch(`../php/get_Roles.php?id=${roleId}`)
-                .then(response => response.json())
-                .then(data => {
-                    // Remplir les champs du formulaire avec les données récupérées
-                    document.getElementById('roleId').value = data.id;
-                    document.getElementById('nom_role').value = data.nom;
-                })
-                .catch(error => console.error('Erreur:', error));
-        });
-    });
-});
-
-
-
-// Modification du role
-document.querySelector('.updateDataRole').addEventListener("click", async function(event) {
-    event.preventDefault();
-
-    const roleId = document.getElementById('roleId').value;
-
-    const nomRoleErrorEdit = document.getElementById('nomRoleErrorEdit');
-
-    const data = {nom_role: nom_role.value};
-    try {
-        const response = await fetch(`http://localhost:5000/roles/${roleId}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
-
-        if (!response.ok) throw new Error("Erreur serveur");
-
-        // Afficharge du message de succès
-        const successMessage = document.getElementById('successMessage');
-        successMessage.textContent = "Modification réussi du rôle!";
-        successMessage.style.display = "block";
-
-        // Attendre 3 secondes avant rechargement de la page
-        setTimeout(() => {
-            location.reload();
-        }, 3000);
-    } catch (error) {
-        console.error('error:', error);
-        showErrorModal(nomRoleErrorEdit, "Échec de l'enregistrement. Veuillez réessayer !");
-    }
 });

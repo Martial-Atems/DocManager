@@ -3,6 +3,10 @@ import cors from 'cors';
 
 // Controller
 import RolesController from './javaScript/controller/RolesController.js'; 
+import UsersController from './javaScript/controller/UsersController.js'
+import TypeDocumentController from './javaScript/controller/TypeDocumentController.js';
+import FaculterController from './javaScript/controller/FaculterController.js';
+import FiliereController from './javaScript/controller/FiliereController.js';
 
 const app = express();
 
@@ -18,6 +22,10 @@ app.get('/', (req, res) => {
 
 // Routes API
 app.use('/roles', RolesController);
+app.use('/users', UsersController);
+app.use('/typedocuments', TypeDocumentController);
+app.use('/faculters', FaculterController);
+app.use('/filieres', FiliereController);
 
 // Démarrage du serveur avec gestion des erreurs
 const PORT = 5000;

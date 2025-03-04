@@ -7,6 +7,8 @@ import UsersController from './javaScript/controller/UsersController.js'
 import TypeDocumentController from './javaScript/controller/TypeDocumentController.js';
 import FaculterController from './javaScript/controller/FaculterController.js';
 import FiliereController from './javaScript/controller/FiliereController.js';
+import SessionController from './javaScript/controller/SessionController.js';
+import StatutController from './javaScript/controller/StatutController.js';
 
 const app = express();
 
@@ -26,6 +28,8 @@ app.use('/users', UsersController);
 app.use('/typedocuments', TypeDocumentController);
 app.use('/faculters', FaculterController);
 app.use('/filieres', FiliereController);
+app.use('/sessions', SessionController);
+app.use('/statuts', StatutController);
 
 // Démarrage du serveur avec gestion des erreurs
 const PORT = 5000;

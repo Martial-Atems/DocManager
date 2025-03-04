@@ -38,7 +38,7 @@
             <li><a href="roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Rôle</span></a></li>
             <li><a href="faculter.html"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
             <li><a href="filiere.html"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
-            <li><a href="#"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
+            <li><a href="session.html"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
             <li><a href="type_document.html"><i class="fa-solid fa-file"></i><span class="text">Type de document</span></a></li>
             <li><a href="document.html"><i class="fa-solid fa-book"></i><span class="text">Document</span></a></li>
         </ul>
@@ -89,13 +89,11 @@
     <script src="../../javaScript/utilisateurs.js"></script>
     <script>
         // script pour envoyer id au serveur pour pouvoir effectuer la suppression du role
-        ocument.querySelector(".deleteDataFil").addEventListener("click", async function(event) {
+        document.querySelector(".deleteDataFil").addEventListener("click", async function(event) {
             event.preventDefault();
 
             const filId = document.getElementById('filId').value;
             const nomFilErrorDel = document.getElementById('nomFilErrorDel');
-
-            alert(filId);
 
             try {
                 const response = await fetch(`http://localhost:5000/filieres/${filId}`, {

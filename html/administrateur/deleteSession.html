@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Faculter</title>
+    <title>Suppression de la session</title>
 
     <!-- Liens font-awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Liens CSS -->
     <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../css/administrateur/faculter.css">
+    <link rel="stylesheet" href="../../css/administrateur/roles.css">
 </head>
 <body>
     <div class="navbar">
@@ -51,62 +51,76 @@
     </div>
 
     <div class="content" id="content">
-
-        <!-- Modal pour l'ajout d'une faculter -->
-    <div class="modal fade" id="modalAjoutFacuter" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabelAjoutFac"> <i class="fa-solid fa-plus"></i> Ajouter une faculter</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h5 class="modal-title" id="staticBackdropLabelModifRole">Suppression de la session</h5>
             </div>
             <div class="modal-body">
 
                 <!-- Pour afficher le message de succes -->
                 <small id="successMessage"> </small>
+                <small id="nomSesErrorDel"> </small>
 
-                <form id="formAjouteFac">
-                    <div class="mb-3">
-                        <label for="nomFac" class="col-form-label">Nom de la faculter:</label>
-                        <input type="text" class="form-control" id="nomFac" name="nom_faculter" placeholder="Entrer le nom de la faculter">
-                        <small class="error_message" id="nomFacError">Ce champs ne doit pas être vide</small>
-                    </div>
+                <form id="formDeleteSes">
+                    <!-- input cacher pour l'id -->
+                    <input type="hidden" id="sesId" name="sesId">
                 </form>
+                <p>Voulez-vous vraiment supprimer cette session ?</p>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-primary" form="formAjouteFac">Ajouter</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">NON</button>
+                <button type="submit" class="btn btn-danger deleteDataSes" form="formDeleteSes">OUI</button>
             </div>
         </div>
-        </div>
-    </div>
-
-        <!-- Tableau pour la gestion des faculter -->
-    <div class="container mt-5">
-        <h3>Faculters</h3>
-        <br>
-        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalAjoutFacuter">
-            <i class="fa-solid fa-plus"></i><span>Ajouter une faculter</span>
-        </button>
-        <table class="table table-bordered table-striped table-primary table-hover">
-            <thead>
-                <tr class="col-primary">
-                    <th>ID</th>
-                    <th>NOM DE LA FACULTER</th>
-                    <th>ACTION</th>
-                </tr>
-            </thead>
-            <!-- corps du tableau -->
-            <tbody id="faculter-table-body">
-                <!-- Afficharge des donnees -->
-            </tbody>
-        </table>
     </div>
 
     <!-- Scripts -->
+     <script>
+        //Scrpts pour recuperer l'identifiant
+        const url =new URLSearchParams(window.location.search);
+        const id =url.get('id');
+
+        const sesId = document.getElementById('sesId');
+        sesId.value = id;
+        
+     </script>
     <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script src="../../javaScript/jquery.js"></script>
     <script src="../../javaScript/utilisateurs.js"></script>
-    <script src="../../javaScript/model/FaculterModel.js"></script>
+    <script>
+        // script pour la suppression d'une session
+        document.querySelector(".deleteDataSes").addEventListener("click", async function(event) {
+            event.preventDefault();
+
+            const sesId= document.getElementById('sesId').value;
+            const nomSesErrorDel = document.getElementById('nomSesErrorDel');
+
+            try {
+                const response = await fetch(`http://localhost:5000/sessions/${sesId}`, {
+                    method: 'DELETE'
+                })
+                .then(response => {
+                    if (response.ok) {
+                        //suppresion de la ligne du tableau
+                        const ligne = document.getElementById('sesId');
+                        ligne.parentNode.removeChild(ligne);
+
+                        // Afficharge du message de succès
+                        const successMessage = document.getElementById('successMessage');
+                        successMessage.textContent = "Suppression réussi de la session";
+                        successMessage.style.display = "block";
+
+                        // Attendre 3 secondes avant rechargement de la page
+                        setTimeout(() => {
+                            window.location.replace("session.html");
+                        }, 1000);
+                    }
+                })
+            } catch (error) {
+                console.error('error:', error);
+                showErrorModal(nomSesErrorDel, "Échec lors de la suppression. Veuillez réessayer !");
+            }
+        });
+    </script>
 </body>
 </html>

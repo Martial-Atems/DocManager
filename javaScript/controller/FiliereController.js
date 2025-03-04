@@ -53,7 +53,6 @@ router.patch('/:filId', (req, res) => {
 //Route pour supprimer une filiere
 router.delete('/:filId', (req, res) => {
     const filId = parseInt(req.params.filId);
-    console.log(filId);
    
     const query = 'DELETE FROM filiere WHERE id_filiere = ?';
     connection.query(query, [filId], (err, result) => {

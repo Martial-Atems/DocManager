@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session</title>
+
+    <!-- Liens font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/administrateur/session.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"> <span>~</span></i></button>
+        </div>
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Profil"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <hr>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
+            <li><a href="roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Rôle</span></a></li>
+            <li><a href="faculter.html"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
+            <li><a href="filiere.html"><i class="fas fa-folder"></i><span class="text">Filière</span></a></li>
+            <li><a href="session.html"><i class="fas fa-folder"></i><span class="text">Session</span></a></li>
+            <li><a href="type_document.html"><i class="fa-solid fa-file"></i><span class="text">Type de document</span></a></li>
+            <li><a href="document.html"><i class="fa-solid fa-book"></i><span class="text">Document</span></a></li>
+        </ul>
+            <hr>
+        <ul>
+            <li><i class="fas fa-clock"></i><span class="text">Historique</span></li>
+            <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li>
+            <li><i class="fas fa-cog"></i><span class="text">Paramètres</span></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+
+        <!-- Modal pour l'ajout d'une session -->
+        <div class="modal fade" id="modalAjoutSes" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelSes"> <i class="fa-solid fa-plus"></i> Ajouter une session</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- Pour afficher le message de succes -->
+                    <small id="successMessage"> </small>
+
+                    <form id="formAjoutSes">
+                        <div class="mb-3">
+                            <label for="debutSes" class="col-form-label">Date de début:</label>
+                            <input type="date" class="form-control" id="debutSes" name="date_Debut"">
+                            <small class="error_message" id="debutSesError">Ce champs ne doit pas être vide</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="finSes" class="col-form-label">Date de fin:</label>
+                            <input type="date" class="form-control" id="finSes" name="date_Fin">
+                            <small class="error_message" id="finSesError">Ce champs ne doit pas être vide</small>
+                        </div>
+                        <div class="mb-3">
+                            <label for="libSes" class="col-form-label">Libellé de session:</label>
+                            <input type="text" class="form-control" id="libSes" name="libelle_Session" placeholder="Entrer le Libellé de session">
+                            <small class="error_message" id="libSesError">Ce champs ne doit pas être vide</small>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                    <button type="submit" class="btn btn-primary" form="formAjoutSes">Ajouter</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- Modal pour activer la session -->
+        <div class="modal fade" id="activateModal" tabindex="-1" aria-labelledby="activateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="activateModalLabel">Activer la session</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Voulez-vous vraiment activer la session ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" onclick="_btnActive(this)" id="confirmActivate">Activer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal pour désactiver la session -->
+        <div class="modal fade" id="deactivateModal" tabindex="-1" aria-labelledby="deactivateModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deactivateModalLabel">Désactiver la session</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Voulez-vous vraiment désactiver la session ?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="button" class="btn btn-primary" onclick="_btnDesactive(this)" id="confirmDeactivate">Désactiver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau pour la gestion des Sessions -->
+        <div class="container mt-5">
+            <div id="errorContainer"></div>
+                <h3>Sessions</h3>
+                <p class="activer">LA SESSION EST OUVERTE</p>
+                <p class="desactiver">AUCUNE SESSION N'EST ACTIVE</p>
+            <br>
+            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#modalAjoutSes">
+                <i class="fa-solid fa-plus"></i><span>Ajouter une Session</span>
+            </button>
+            <table class="table table-bordered table-striped table-primary table-hover">
+                <thead>
+                    <tr class="col-primary">
+                        <th>ID</th>
+                        <th>DATE DEBUT</th>
+                        <th>DATE FIN</th>
+                        <th>LIBELLE DE LA SESSION</th>
+                        <th>STATUT</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <!-- corps du tableau -->
+                <tbody id="session-table-body">
+                    <!-- Afficharge des donnees -->
+                </tbody>
+            </table>
+        </div>        
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../javaScript/jquery.js"></script>
+    <script src="../../javaScript/utilisateurs.js"></script>
+    <script src="../../javaScript/model/SessionModel.js"></script>
+</body>
+</html>

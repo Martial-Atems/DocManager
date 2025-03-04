@@ -68,11 +68,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 <td id="roleId">${rol.id_role}</td>
                 <td>${rol.nomRole}</td>
                 <td>
-                  
                     <a href="/html/administrateur/updateRole.html?id=${rol.id_role}&nom=${rol.nomRole}" style = "text-decoration: none;" class="btn btn-primary btn-sm" > Modifier </a>
 
                     <a href="/html/administrateur/deleteRole.html?id=${rol.id_role}" style = "text-decoration: none;" class="btn btn-danger btn-sm deleteRoleBtn" > Supprimer </a>
-                
                 </td>
             `;
             tableBody.appendChild(row);

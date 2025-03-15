@@ -66,6 +66,10 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+
+                        <!-- Pour afficher le message de succes -->
+                        <small id="successMessage"> </small>
+
                         <form id="modalAjoutForm" class="modalAjoutForm">
                             <div class="mb-3">
                                 <label for="roleSelect" class="col-form-label">Rôle:</label>
@@ -73,6 +77,7 @@
                                     <!-- Les rôles seront ajoutés ici -->
                                     
                                 </select>
+                                <small class="error_message" id="roleError">Le nom ne doit pas être vide </small>
                             </div>
                             <div class="mb-3">
                                 <label for="nom" class="col-form-label">Nom:</label>
@@ -87,6 +92,7 @@
                             <div class="mb-3">
                                 <label for="dateNais" class="col-form-label">Date de naissance:</label>
                                 <input type="date" class="form-control" id="dateNais" name="date_nais">
+                                <small class="error_message" id="dateError">Ce champs ne doit pas être vide</small>
                             </div>
                             <div class="mb-3">
                                 <label for="lieuNais" class="col-form-label">Lieu de naissance:</label>
@@ -96,9 +102,11 @@
                             <div class="mb-3">
                                 <label for="sexe" class="col-form-label">Sexe:</label>
                                 <select name="sexe" id="sexe" class="form-control">
+                                    <option value=""> </option>
                                     <option value="Masculin">Masculin</option>
                                     <option value="Feminin">Feminin</option>
                                 </select>
+                                <small class="error_message" id="sexeError">Ce champs ne doit pas être vide</small>
                             </div>
                             <div class="mb-3">
                                 <label for="adresse" class="col-form-label">Adresse:</label>
@@ -130,16 +138,107 @@
             </div>
         </div>
 
+        <!-- Modal pour l'ajout d'un etudiant -->
+        <div class="modal fade" id="AjoutEtudiantModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelAjoutUsers"><i class="fa-solid fa-user-plus"></i> Ajouter un utilisateur</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Pour afficher le message de succes -->
+                        <small id="successMessage"> </small>
+
+                        <form id="modalAjoutEtudiantForm" class="modalAjoutEtudiantForm">
+                            <div class="mb-3">
+                                <label for="utilisateur" class="col-form-label">Etudiant:</label>
+                                <select  name="etudiant" id="etudiant" class="form-control">
+                                    <!-- Les utilisateurs etudiants seront ajoutés ici -->
+                                    
+                                </select>
+                                <small class="error_message" id="nomEtudError">Ce champs ne doit pas être vide</small>
+                            </div>  
+                            <div class="mb-3">
+                                <label for="filiere" class="col-form-label">Filière:</label>
+                                <select  name="filiere" id="filiere" class="form-control">
+                                    <!-- Les filieres seront ajoutés ici -->
+                                    
+                                </select>
+                                <small class="error_message" id="nomFilError">Ce champs ne doit pas être vide</small>
+                            </div>                                                 
+                            <div class="mb-3">
+                                <label for="niveau" class="col-form-label">Niveau :</label>
+                                <select name="niveau" id="niveau" class="form-control">
+                                    <option value=""> </option>
+                                    <option value="BTS1">BTS L1</option>
+                                    <option value="BTS2">BTS L2</option>
+                                </select>
+                                <small class="error_message" id="nomNivError">Ce champs ne doit pas être vide</small>
+                            </div>                         
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary" form="modalAjoutEtudiantForm">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal pour l'ajout d'un admin -->
+        <div class="modal fade" id="AjoutAdminModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelAjoutUsers">
+                            <i class="fa-solid fa-user-plus"></i> Ajouter un administrateur
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <!-- Pour afficher le message de succès ou d'erreur -->
+                        <small id="successMessage"></small>
+
+                        <form id="modalAjoutAdminForm" class="modalAjoutAdminForm">
+                            <div class="mb-3">
+                                <label for="utilisateur" class="col-form-label">Administrateur:</label>
+                                <select name="id_utilisateur" id="administrateur" class="form-control">
+                                    <!-- Les options seront ajoutées dynamiquement ici -->
+                                </select>
+                                <small class="error_message" id="nomAdmError">Ce champ ne doit pas être vide</small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary" form="modalAjoutAdminForm">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <!-- Tableau d'afficharge des utilisateurs -->
         <div class="container mt-5">
             <h3>Utilisateurs</h3>
             <br>
-            <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#AjoutModal" data-bs-whatever="@mdo">
+            <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#AjoutModal" data-bs-whatever="@mdo">
                 <i class="fa-solid fa-user-plus"></i> <span>Ajouter un utilisateur</span>
             </button>
-            
+
+            <button type="button" class="btn btn-danger mb-3" data-bs-toggle="modal" data-bs-target="#AjoutEtudiantModal" data-bs-whatever="@mdo">
+                <i class="fa-solid fa-user-plus"></i> <span>Ajouter un etudiant</span>
+            </button> 
+
+            <button type="button" class="btn btn-warning mb-3" data-bs-toggle="modal" data-bs-target="#AjoutAdminModal" data-bs-whatever="@mdo">
+                <i class="fa-solid fa-user-plus"></i> <span>Ajouter un admin</span>
+            </button>
+
             <div class="table-responsive">
-                <table class="table table-bordered table-striped table-primary table-hover">
+            <table class="table table-bordered table-striped table-primary table-hover">
                     <thead>
                         <tr class="col-primary">
                             <th>ID</th>
@@ -167,11 +266,14 @@
     <script src="../../javaScript/jquery.js"></script>
     <script src="../../javaScript/utilisateurs.js"></script>
     <script src="../../javaScript/model/UsersModel.js"></script>
+    <script src="../../javaScript/model/EtudiantModel.js"></script>
+    <script src="../../javaScript/model/AdminModel.js"></script>
 
     <script>
         // Script pour afficher les Roles sur le select d'ajout des utilisateurs 
         window.onload = function() {
             const roleSelect = document.getElementById('roleSelect');
+            roleSelect.innerHTML = '<option value=""> </option>'; //option vide
 
             // Récupère les rôles depuis l'API backend
             fetch('http://localhost:5000/roles')
@@ -180,9 +282,64 @@
                 // Ajoute chaque rôle comme une option dans le select
                 roles.forEach(function(role) {
                     let option = document.createElement('option');
+                    
                     option.value = role.id_role;  // Utilise l'id_role comme valeur
                     option.textContent = role.nomRole;  // Affiche le nom du rôle
+                
                     roleSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Erreur:', error));
+
+            // Afficher les noms et prénoms des etudiants
+            const etudiantSelect = document.getElementById('etudiant');
+            etudiantSelect.innerHTML = '<option value=""> </option>'; //option vide
+            fetch('http://localhost:5000/users')
+            .then(response => response.json())
+            .then(users => {
+                const etudiants = users.filter(user => user.nomRole === "Etudiant");
+                etudiants.forEach(function(user) {
+                    let option1 = document.createElement('option');
+
+                    option1.value = user.id_utilisateur;
+                    option1.textContent = `${user.nom} ${user.prenom}`;
+
+                    etudiantSelect.appendChild(option1);
+                });
+            })
+            .catch(error => console.error('Erreur:', error));
+    
+            // Afficher les filières
+            const filiereSelect = document.getElementById('filiere');
+            filiereSelect.innerHTML = '<option value=""> </option>'; //option vide
+            fetch('http://localhost:5000/filieres')
+            .then(response => response.json())
+            .then(filieres => {
+                filieres.forEach(function(fil) {
+                    let option2 = document.createElement('option');
+
+                    option2.value = fil.id_filiere;
+                    option2.textContent = fil.nomFiliere;
+
+                    filiereSelect.appendChild(option2);
+                });
+            })
+            .catch(error => console.error('Erreur:', error));
+
+            // Afficher les noms et prénoms des administrateurs
+            const adminSelect = document.getElementById('administrateur');
+            adminSelect.innerHTML = '<option value=""> </option>'; //option vide
+            fetch('http://localhost:5000/users')
+            .then(response => response.json())
+            .then(users => {
+                const admin = users.filter(user => user.nomRole === "Admin");
+                admin.forEach(function(user) {
+                    let option3 = document.createElement('option');
+
+                    option3.value = user.id_utilisateur;
+                    option3.textContent = `${user.nom} ${user.prenom}`;
+
+                    adminSelect.appendChild(option3);
                 });
             })
             .catch(error => console.error('Erreur:', error));

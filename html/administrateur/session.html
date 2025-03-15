@@ -99,12 +99,13 @@
                         <h5 class="modal-title" id="activateModalLabel">Activer la session</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <small id="nomSesErrorEdit"></small>
                     <div class="modal-body">
                         Voulez-vous vraiment activer la session ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary" onclick="_btnActive(this)" id="confirmActivate">Activer</button>
+                        <button type="button" class="btn btn-primary" onclick="_btnActive()" id="confirmActivate">Activer</button>
                     </div>
                 </div>
             </div>
@@ -123,7 +124,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                        <button type="button" class="btn btn-primary" onclick="_btnDesactive(this)" id="confirmDeactivate">Désactiver</button>
+                        <button type="button" class="btn btn-primary" onclick="_btnDesactive()" id="confirmDeactivate">Désactiver</button>
                     </div>
                 </div>
             </div>
@@ -163,5 +164,151 @@
     <script src="../../javaScript/jquery.js"></script>
     <script src="../../javaScript/utilisateurs.js"></script>
     <script src="../../javaScript/model/SessionModel.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    fetch('http://localhost:5000/sessions')
+    .then(response => response.json())
+    .then(sessions => {
+        const tableBody = document.getElementById('session-table-body');
+        sessions.forEach(ses => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td id="sesId">${ses.id_ses}</td>
+                <td>${ses.dateDebut}</td>
+                <td>${ses.dateFin}</td>
+                <td>${ses.libelleSes}</td>
+                <td>${ses.statut}</td>
+                <td>
+                    <button class="btn btn-success btn-sm _BtnIcones Activer" id="${ses.id_ses}" title="Activer la session" data-bs-toggle="modal" data-bs-target="#activateModal">
+                        <i class="fa-solid fa-check"></i>
+                    </button> 
+                    <button class="btn btn-primary btn-sm _BtnIcones Desactiver" id="${ses.id_ses}" title="Desactiver la session" data-bs-toggle="modal" data-bs-target="#deactivateModal">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <a href="/html/administrateur/updateSession.html?id=${ses.id_ses}&debut=${ses.dateDebut}&fin=${ses.dateFin}&libelle=${ses.libelleSes}" style="text-decoration: none;" class="btn btn-primary btn-sm">Modifier</a>
+                    <a href="/html/administrateur/deleteSession.html?id=${ses.id_ses}" style="text-decoration: none;" class="btn btn-danger btn-sm deleteRoleBtn">Supprimer</a>
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+    });
+});
+
+function _btnActive() {
+    const button = document.querySelector('#confirmActivate');
+
+    const url = new URLSearchParams(window.location.search);
+    const id = url.get('id');
+    const sesId = button.getAttribute('data-id');
+
+    fetch(`http://localhost:5000/statuts/${sesId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ statut: 'Activer' })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors de l\'activation de la session');
+        }
+        return response.json();
+    })
+    .then(data => {
+        button.disabled = true;
+        button.classList.remove('btn-success');
+        button.classList.add('btn-secondary');
+
+        const desactivateButton = document.querySelector('.Desactiver');
+        desactivateButton.disabled = false;
+        desactivateButton.classList.remove('btn-secondary');
+        desactivateButton.classList.add('btn-primary');
+
+        document.querySelectorAll('.Activer').forEach(btn => {
+            if (btn !== button) {
+                btn.disabled = true;
+                btn.classList.remove('btn-success');
+                btn.classList.add('btn-secondary');
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        const nomSesErrorEdit = document.getElementById('nomSesErrorEdit');
+        nomSesErrorEdit.textContent = "Échec lors de la modification. Veuillez réessayer !";
+    });
+}
+
+function _btnDesactive() {
+    const button = document.querySelector('#confirmDeactivate');
+    const sesId = button.getAttribute('data-id');
+
+    alert(sesId);
+
+    fetch(`http://localhost:5000/statuts/${sesId}`, {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ statut: 'Désactiver' })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Erreur lors de la désactivation de la session');
+        }
+        return response.json();
+    })
+    .then(data => {
+        button.disabled = true;
+        button.classList.remove('btn-primary');
+        button.classList.add('btn-secondary');
+
+        const activateButton = document.querySelector('.Activer');
+        activateButton.disabled = false;
+        activateButton.classList.remove('btn-secondary');
+        activateButton.classList.add('btn-success');
+    })
+    .catch(error => {
+        console.error('Erreur:', error);
+        const nomSesErrorEdit = document.getElementById('nomSesErrorEdit');
+        nomSesErrorEdit.textContent = "Échec lors de la modification. Veuillez réessayer !";
+    });
+}
+
+function initializeButtons() {
+    fetch('http://localhost:5000/statuts')
+    .then(response => response.json())
+    .then(data => {
+        data.forEach(session => {
+            const activateButton = document.querySelector(`.Activer`);
+            const desactivateButton = document.querySelector(`.Désactiver`);
+
+            if (session.statut === 'Activer') {
+                activateButton.disabled = true;
+                activateButton.classList.remove('btn-success');
+                activateButton.classList.add('btn-secondary');
+
+                desactivateButton.disabled = false;
+                desactivateButton.classList.remove('btn-secondary');
+                desactivateButton.classList.add('btn-primary');
+            } else {
+                desactivateButton.disabled = true;
+                desactivateButton.classList.remove('btn-primary');
+                desactivateButton.classList.add('btn-secondary');
+
+                activateButton.disabled = false;
+                activateButton.classList.remove('btn-secondary');
+                activateButton.classList.add('btn-success');
+            }
+        });
+    })
+    .catch(error => {
+        console.error('Erreur lors de la récupération des statuts des sessions:', error);
+    });
+}
+
+window.onload = initializeButtons;
+    </script>
 </body>
 </html>

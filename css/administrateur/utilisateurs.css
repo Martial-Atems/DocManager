@@ -179,6 +179,16 @@ body {
     color: red;
 }
 
+/* text de succes */
+#successMessage {
+    display: none; 
+    color: green; 
+    font-weight: bold; 
+    text-align: center; 
+    width: 300px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 @media (max-width: 600px) {
     .navbar .logo {
         padding: 0 40px;

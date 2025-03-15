@@ -1,21 +1,29 @@
 // Script pour la recuperation des donnees du formulaire pour les renvoyer au niveau du serveur express.
 function soumettreModalForm(event) {
-    // Recuperation des donnees du formulaire
     document.getElementById('modalAjoutForm').addEventListener('submit', async function(event) {
-        event.preventDefault(); // Empêche la soumission par defaut du formulaire
-        
-        // Fonction pour afficher un message d'erreur
+        event.preventDefault();
+
         function showErrorModal(element, message) {
-            element.style.display = 'block'; // Affiche un message d'erreur
+            element.style.display = 'block';
             element.textContent = message;
         }
 
-        // Fonction pour cacher un message d'erreur
         function hideErrorModal(element) {
-            element.style.display = 'none'; // Cache le message d'erreur
+            element.style.display = 'none';
         }
 
-        // Récupération des valeurs des champs du formulaire
+        function emptyset() { // vider les champs du formulaire
+            document.getElementById('nom').value = "";
+            document.getElementById('prenom').value = "";
+            document.getElementById('dateNais').value = "";
+            document.getElementById('lieuNais').value = "";
+            document.getElementById('sexe').value = "";
+            document.getElementById('adresse').value = "";
+            document.getElementById('phone').value = "";
+            document.getElementById('email').value = "";
+            document.getElementById('password').value = "";
+        }
+
         const roleSelect = document.getElementById('roleSelect').value.trim();
         const nom = document.getElementById('nom').value.trim();
         const prenom = document.getElementById('prenom').value.trim();
@@ -27,27 +35,40 @@ function soumettreModalForm(event) {
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value.trim();
 
-        let formValidModal = true; // Utilisée pour suivre l'état de la validation du formulaire
-        // Réinitialiser les messages d'erreur
+        let formValidModal = true;
+        hideErrorModal(document.getElementById('roleError'));
         hideErrorModal(document.getElementById('nomError'));
         hideErrorModal(document.getElementById('prenomError'));
+        hideErrorModal(document.getElementById('dateError'));
         hideErrorModal(document.getElementById('lieuNaisError'));
+        hideErrorModal(document.getElementById('sexeError'));
         hideErrorModal(document.getElementById('adresseError'));
         hideErrorModal(document.getElementById('phoneError'));
         hideErrorModal(document.getElementById('emailError'));
         hideErrorModal(document.getElementById('passwordError'));
 
-        // Vérifications des champs
+        if (roleSelect === '') {
+            showErrorModal(document.getElementById('roleError'), 'Le role ne doit pas être vide');
+            formValidModal = false;
+        }
         if (nom === '') {
-            showErrorModal(document.getElementById('nomError'), 'Le nom doit avoir au moins cinq caractères');
+            showErrorModal(document.getElementById('nomError'), 'Le nom ne doit pas être vide');
             formValidModal = false;
         }
         if (prenom === '') {
             showErrorModal(document.getElementById('prenomError'), 'Le prénom ne doit pas être vide');
             formValidModal = false;
         }
+        if (date_nais === '') {
+            showErrorModal(document.getElementById('dateError'), 'selectionnez la date naissance');
+            formValidModal = false;
+        }
         if (lieu_nais === '') {
             showErrorModal(document.getElementById('lieuNaisError'), 'Le lieu de naissance ne doit pas être vide');
+            formValidModal = false;
+        }
+        if (sexe === '') {
+            showErrorModal(document.getElementById('sexeError'), 'Le sexe ne doit pas être vide');
             formValidModal = false;
         }
         if (adresse === '') {
@@ -66,7 +87,7 @@ function soumettreModalForm(event) {
             showErrorModal(document.getElementById('passwordError'), 'Le mot de passe ne doit pas être vide');
             formValidModal = false;
         }
-        
+
         if (formValidModal) {
             const formDataModal = new FormData(event.target);
             const dataModal = {
@@ -82,8 +103,8 @@ function soumettreModalForm(event) {
                 email: formDataModal.get('adresse_mail'),
                 password: formDataModal.get('mot_de_passe')
             };
+
             try {
-                // Envoi des données au serveur express avec une requête fetch
                 const response = await fetch('http://localhost:5000/users', {
                     method: 'POST',
                     headers: {
@@ -91,19 +112,59 @@ function soumettreModalForm(event) {
                     },
                     body: JSON.stringify(dataModal)
                 });
-                var status = response.status;
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.message || "Erreur serveur");
+                }
+
+                const successMessage = document.getElementById('successMessage');
+                successMessage.textContent = "Utilisateur ajouté avec succès";
+                successMessage.style.display = "block";
+
+                setTimeout(() => {
+                    emptyset();
+                    successMessage.style.display = "none";
+                    location.reload();
+                }, 3000);
             } catch (error) {
-                console.error('Error:', error);
-            }
-            if (status !== 500) {
-                alert("Enregistrement réussi");
-                location.reload(); // Pour recharger la page et afficher les modifications
-            } else {
-                alert("Enregistrement échoué");
+                console.error('error:', error);
+                showErrorModal(document.getElementById('nomError'), "Échec de l'enregistrement. Veuillez réessayer !");
             }
         }
     });
 }
 document.addEventListener('DOMContentLoaded', function() {
     soumettreModalForm();
-});   
+});
+
+//script pour recuperer les donnees de la table users et les afficher dans la page
+document.addEventListener('DOMContentLoaded', function() {
+    fetch('http://localhost:5000/users')
+    .then(response => response.json())
+    .then(users => {
+        const tableBody = document.getElementById('users-table-body');
+        users.forEach(user => {
+        const row = document.createElement('tr');
+            row.innerHTML = `
+                <td id="userId">${user.id_utilisateur}</td>
+                <td>${user.nomRole}</td>
+                <td>${user.nom}</td>
+                <td class="hide-on-small">${user.prenom}</td>
+                <td class="hide-on-small">${user.sexe}</td>
+                <td class="hide-on-small">${user.adresse}</td>
+                <td class="hide-on-small">${user.numeroTel}</td>
+                <td class="hide-on-small">${user.email}</td>
+                <td>
+                  
+                    <a href="/html/administrateur/deleteUsers.html?id=${user.id_utilisateur}" style = "text-decoration: none;" class="btn btn-danger btn-sm deleteBtn" > Supprimer </a>
+
+                    <a href="/html/administrateur/updateUsers.html?id=${user.id_utilisateur}&id_role=${user.nomRole}&nom=${user.nom}&prenom=${user.prenom}&datenais=${user.dateNais}&lieunais=${user.lieuNais}&sexe=${user.sexe}&adresse=${user.adresse}&tel=${user.numeroTel}" style = "text-decoration: none;" class="btn btn-primary btn-sm editBtn" > Modifier </a>
+                
+                </td>
+            `;
+            tableBody.appendChild(row);
+        });
+        
+    });        
+});

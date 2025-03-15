@@ -1,6 +1,7 @@
 // Script pour afficher les faculters sur le select d'ajout des filieres 
 window.onload = function() {
     const faculterSelect = document.getElementById('faculterSelect');
+    faculterSelect.innerHTML = '<option value=""> </option>'; //option vide
 
     // Récupère les faculters depuis l'API backend
     fetch('http://localhost:5000/faculters')
@@ -41,10 +42,15 @@ document.getElementById('formAjoutFil').addEventListener("submit", async functio
 
     // Reinitialisation des messages d'erreur.
     hideErrorModal(document.getElementById('nomFilError'));
+    hideErrorModal(document.getElementById('faculterSelectError'));
 
     // Verification du champs
     if (nomFil === "") {
         showErrorModal(document.getElementById('nomFilError'), 'Ce champs ne doit pas être vide');
+        formValidModal = false;
+    }
+    if (faculterSelect === "") {
+        showErrorModal(document.getElementById('faculterSelectError'), 'Ce champs ne doit pas être vide');
         formValidModal = false;
     }
 

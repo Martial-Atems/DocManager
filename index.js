@@ -9,6 +9,8 @@ import FaculterController from './javaScript/controller/FaculterController.js';
 import FiliereController from './javaScript/controller/FiliereController.js';
 import SessionController from './javaScript/controller/SessionController.js';
 import StatutController from './javaScript/controller/StatutController.js';
+import EtudiantController from './javaScript/controller/EtudiantController.js';
+import AdminController from './javaScript/controller/AdminController.js';
 
 const app = express();
 
@@ -30,6 +32,8 @@ app.use('/faculters', FaculterController);
 app.use('/filieres', FiliereController);
 app.use('/sessions', SessionController);
 app.use('/statuts', StatutController);
+app.use('/etudiants', EtudiantController);
+app.use('/admins', AdminController);
 
 // Démarrage du serveur avec gestion des erreurs
 const PORT = 5000;

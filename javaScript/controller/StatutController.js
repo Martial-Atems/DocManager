@@ -17,10 +17,15 @@ router.get('/', (req, res) => {
 });
 
 
-// Route PATCH pour mettre à jour (activer ou desactiver) le statut de la session
+// Route PATCH pour mettre à jour (activer ou désactiver) le statut de la session
 router.patch('/:sesId', (req, res) => {
     const sesId = req.params.sesId;
     const { statut } = req.body;
+
+    // Validation des données entrantes
+    if (!sesId || !statut || (statut !== 'Activer' && statut !== 'Désactiver')) {
+        return res.status(400).json({ error: 'Données invalides. Vérifiez l\'ID de la session et le statut.' });
+    }
 
     // Vérifier si l'utilisateur essaie d'activer une session
     if (statut === 'Activer') {
@@ -29,7 +34,7 @@ router.patch('/:sesId', (req, res) => {
         connection.query(checkActiveSessionSql, [sesId], (err, results) => {
             if (err) {
                 console.error('Erreur lors de la vérification des sessions actives:', err);
-                return res.status(500).json({ error: 'Erreur lors de la vérification des sessions actives' });
+                return res.status(500).json({ error: 'Erreur serveur lors de la vérification des sessions actives.' });
             }
 
             if (results.length > 0) {
@@ -51,9 +56,16 @@ function updateSessionStatus(sesId, statut, res) {
     connection.query(sql, [statut, sesId], (err, result) => {
         if (err) {
             console.error('Erreur lors de la mise à jour de la session:', err);
-            return res.status(500).json({ error: 'Erreur lors de la mise à jour de la session' });
+            return res.status(500).json({ error: 'Erreur serveur lors de la mise à jour de la session.' });
         }
-        res.json({ message: 'Statut de la session mis à jour avec succès' });
+
+        if (result.affectedRows === 0) {
+            // Aucune session trouvée avec cet ID
+            return res.status(404).json({ error: 'Session non trouvée.' });
+        }
+
+        // Succès
+        res.json({ message: 'Statut de la session mis à jour avec succès.' });
     });
 }
 

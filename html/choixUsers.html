@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connection</title>
+
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../css/connection.css">
+    <link rel="stylesheet" href="../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="infosBarre d-flex justify-content-between p-2">
+        <div  class="adresseMail">
+            <a href="#">martialatems128@gmail.com</a>
+        </div>
+        <div class="position">
+            <h5>DSCHANG, CAMEROUN</h5>
+        </div>
+        <div class="numero">
+            +237 678 518 089
+        </div>
+        
+        <!-- Les langue de l'application -->
+        <div class="langue">
+            <label for="language" class="visually-hidden">Choisissez votre langue :</label>
+            <select name="language" id="language" class="form-select" title="Choisissez votre langue">
+                <option value="Français">Français</option>
+                <option value="Anglais">Anglais</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Entete de page -->
+    <header>
+       <img src="../image/img.webp" alt="logo" width="100px" height="100px"> 
+
+       <nav class="barreDeNavigation">
+            <ul>
+                <li><a href="index.html">Acceuil</a></li>
+                <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">A Propos</a></li>
+                <li><a href="#"class="dropdown-toggle" data-toggle="dropdown">Services</a></li>
+                <li><a href="#"class="dropdown-toggle" data-toggle="dropdown">Social</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+       </nav>
+       
+       <button class="btnSercice">Demandez un service</button>
+    </header>
+    <br><br>
+
+    <div class="choiseLogin">
+        
+        <div class="etudiant">
+            <a href="loginEtudiant.html">
+                <img src="../image/etudiant.png" alt="etudiant" width="100px" height="100px">
+                <h3>Etudiant</h3>
+            </a>
+        </div>
+    
+        <div class="administrateur">
+            <a href="loginAdmin.html">
+                <img src="../image/administrateur.png" alt="administrateur" width="100px" height="100px">
+                <h3>Admin</h3>
+            </a>
+        </div>
+    
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

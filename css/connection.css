@@ -99,6 +99,45 @@ header img {
     background: green;
 }
 
+/* style pour les message d'erreur */
+.error_message {
+    color: red;
+    display: none;
+}
+
+/* choix de connection */
+.choiseLogin {
+    position: relative;
+    width: 30%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    left: 36%;
+    margin-top: 100px;
+}
+
+.choiseLogin .etudiant a {
+    justify-content: center;
+    text-decoration: none;
+    color: #000;
+    height: 15%;
+    position: relative;
+}
+.choiseLogin .etudiant a:hover{
+    color: blue;
+}
+
+.choiseLogin .administrateur a {
+    justify-content: center;
+    text-decoration: none;
+    color: #000;
+    height: 15%;
+    position: relative
+    ;
+}
+.choiseLogin .administrateur a:hover {
+    color: blue;
+}
+
 /* Responsivité */
 @media screen and (max-width: 768px) {
     .barreDeNavigation ul {
@@ -112,5 +151,12 @@ header img {
 
     .formInscription {
         width: 80%;
+    }
+
+    .choiseLogin {
+        width: 40%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-top: 60px;
     }
 }

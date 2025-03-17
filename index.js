@@ -11,6 +11,8 @@ import SessionController from './javaScript/controller/SessionController.js';
 import StatutController from './javaScript/controller/StatutController.js';
 import EtudiantController from './javaScript/controller/EtudiantController.js';
 import AdminController from './javaScript/controller/AdminController.js';
+import LoginAdminController from './javaScript/controller/LoginAdminController.js';
+import LoginEtudiantController from './javaScript/controller/LoginEtudiantController.js';
 
 const app = express();
 
@@ -34,6 +36,8 @@ app.use('/sessions', SessionController);
 app.use('/statuts', StatutController);
 app.use('/etudiants', EtudiantController);
 app.use('/admins', AdminController);
+app.use('/loginAds', LoginAdminController);
+app.use('/loginEtuds', LoginEtudiantController);
 
 // Démarrage du serveur avec gestion des erreurs
 const PORT = 5000;

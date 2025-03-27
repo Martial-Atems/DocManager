@@ -11,6 +11,7 @@
     <!-- Liens CSS -->
     <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/administrateur/utilisateurs.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 </head>
 <body>
     <div class="navbar">
@@ -36,6 +37,10 @@
             <h3 id="heure"></h3>
             <h3 id="date"></h3>
         </div> -->
+        <!-- image utilisateur -->
+        <div class="image_user">
+            <img src="../../image/images.png" alt="">
+        </div>
         <hr>
         <ul>
             <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
@@ -238,24 +243,24 @@
             </button>
 
             <div class="table-responsive">
-            <table class="table table-bordered table-striped table-primary table-hover">
-                    <thead>
-                        <tr class="col-primary">
-                            <th>ID</th>
-                            <th>ROLE</th>
-                            <th>NOM(S)</th>
-                            <th class="hide-on-small">PRENOM(S)</th>
-                            <th class="hide-on-small">SEXE</th>
-                            <th class="hide-on-small">ADRESSE</th>
-                            <th class="hide-on-small">TÉLÉPHONE</th>
-                            <th class="hide-on-small">ADRESSE MAIL</th>
-                            <th>ACTION</th>                  
-                        </tr>
-                    </thead>
-                    <tbody id="users-table-body">
-                        <!-- Données insérées ici -->
-                        
-                    </tbody>
+                <table id="dataTablese" class="table table-bordered table-striped table-primary table-hover w-100">
+                        <thead>
+                            <tr class="col-primary">
+                                <th>ID</th>
+                                <th>ROLE</th>
+                                <th>NOM(S)</th>
+                                <th class="hide-on-small">PRENOM(S)</th>
+                                <th class="hide-on-small">SEXE</th>
+                                <th class="hide-on-small">ADRESSE</th>
+                                <th class="hide-on-small">TÉLÉPHONE</th>
+                                <th class="hide-on-small">ADRESSE MAIL</th>
+                                <th>ACTION</th>                  
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Données insérées ici -->
+                            
+                        </tbody>
                 </table>
             </div>
         </div>        
@@ -263,7 +268,9 @@
 
     <!-- Scripts -->
     <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
-    <script src="../../javaScript/jquery.js"></script>
+    <!-- Inclusion de jQuery et DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="../../javaScript/utilisateurs.js"></script>
     <script src="../../javaScript/model/UsersModel.js"></script>
     <script src="../../javaScript/model/EtudiantModel.js"></script>
@@ -344,6 +351,15 @@
             })
             .catch(error => console.error('Erreur:', error));
         } 
+    </script>
+
+    <!-- Script pour filtrer les données du tableau -->
+    <script>
+        $(document).ready(function() {
+            $('#dataTablese').DataTable({
+                stateSave: true
+            });
+        });
     </script>
 
 </body>

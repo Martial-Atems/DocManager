@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
             return res.status(500).json({ error: "Erreur serveur" });
         }
 
-        // Vérification si l'utilisateur existe
+        // verification de l'utilisateur
         if (results.length === 0) {
             return res.json({ error: "email" });
         }
@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
         // Récupération de l'utilisateur
         const user = results[0];
 
-        // S'assurer que le mot de passe existe bien dans la base
+        // verification du mots de passe dans la bd
         if (!user.passWord) {
             return res.status(500).json({ error: "Mot de passe manquant dans la base" });
         }

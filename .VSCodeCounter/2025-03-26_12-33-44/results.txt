@@ -1,0 +1,156 @@
+Date : 2025-03-26 12:33:44
+Directory : /opt/lampp/htdocs/DocManager
+Total : 106 files,  90708 codes, 10391 comments, 19930 blanks, all 121029 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| JavaScript |         40 |     46,194 |      9,838 |     11,005 |     67,037 |
+| CSS        |         35 |     38,731 |        377 |      8,484 |     47,592 |
+| HTML       |         27 |      3,633 |        176 |        437 |      4,246 |
+| JSON       |          3 |      2,149 |          0 |          3 |      2,152 |
+| Markdown   |          1 |          1 |          0 |          1 |          2 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                  | files      | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                     |        106 |     90,708 |     10,391 |     19,930 |    121,029 |
+| . (Files)                                                                             |          4 |      2,103 |          5 |         11 |      2,119 |
+| DataTables                                                                            |          4 |      7,647 |      4,089 |      2,144 |     13,880 |
+| bootstrap-5.0.2-dist                                                                  |         22 |     45,636 |      1,697 |     11,477 |     58,810 |
+| bootstrap-5.0.2-dist/css                                                              |         16 |     33,908 |        136 |      8,011 |     42,055 |
+| bootstrap-5.0.2-dist/js                                                               |          6 |     11,728 |      1,561 |      3,466 |     16,755 |
+| config                                                                                |          2 |         19 |          2 |          4 |         25 |
+| css                                                                                   |         11 |      1,905 |         85 |        358 |      2,348 |
+| css (Files)                                                                           |          2 |        279 |         10 |         46 |        335 |
+| css/administrateur                                                                    |          8 |      1,626 |         75 |        311 |      2,012 |
+| css/etudiant                                                                          |          1 |          0 |          0 |          1 |          1 |
+| html                                                                                  |         26 |      3,186 |        160 |        396 |      3,742 |
+| html (Files)                                                                          |          4 |        478 |         22 |         60 |        560 |
+| html/administrateur                                                                   |         21 |      2,661 |        135 |        328 |      3,124 |
+| html/etudiant                                                                         |          1 |         47 |          3 |          8 |         58 |
+| javaScript                                                                            |         26 |      6,590 |        210 |        256 |      7,056 |
+| javaScript (Files)                                                                    |          3 |      5,423 |         22 |         10 |      5,455 |
+| javaScript/controller                                                                 |         12 |        593 |        108 |        132 |        833 |
+| javaScript/model                                                                      |         11 |        574 |         80 |        114 |        768 |
+| jquery-ui-1.13.3.custom                                                               |         11 |     23,622 |      4,143 |      5,284 |     33,049 |
+| jquery-ui-1.13.3.custom (Files)                                                       |         10 |     16,855 |      2,256 |      3,221 |     22,332 |
+| jquery-ui-1.13.3.custom/external                                                      |          1 |      6,767 |      1,887 |      2,063 |     10,717 |
+| jquery-ui-1.13.3.custom/external/jquery                                               |          1 |      6,767 |      1,887 |      2,063 |     10,717 |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                              | language   | code       | comment    | blank      | total      |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| /opt/lampp/htdocs/DocManager/DataTables/datatables.css                                | CSS        |        465 |         16 |         21 |        502 |
+| /opt/lampp/htdocs/DocManager/DataTables/datatables.js                                 | JavaScript |      7,178 |      4,042 |      2,115 |     13,335 |
+| /opt/lampp/htdocs/DocManager/DataTables/datatables.min.css                            | CSS        |          2 |         14 |          4 |         20 |
+| /opt/lampp/htdocs/DocManager/DataTables/datatables.min.js                             | JavaScript |          2 |         17 |          4 |         23 |
+| /opt/lampp/htdocs/DocManager/README.md                                                | Markdown   |          1 |          0 |          1 |          2 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-grid.css              | CSS        |      3,865 |          7 |      1,130 |      5,002 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-grid.min.css          | CSS        |          1 |          6 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-grid.rtl.css          | CSS        |      3,865 |          7 |      1,129 |      5,001 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-grid.rtl.min.css      | CSS        |          1 |          6 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-reboot.css            | CSS        |        346 |         16 |         64 |        426 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-reboot.min.css        | CSS        |          1 |          7 |          0 |          8 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-reboot.rtl.css        | CSS        |        352 |          8 |         63 |        423 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-reboot.rtl.min.css    | CSS        |          1 |          7 |          0 |          8 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-utilities.css         | CSS        |      3,634 |          9 |      1,109 |      4,752 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-utilities.min.css     | CSS        |          1 |          6 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-utilities.rtl.css     | CSS        |      3,630 |          7 |      1,106 |      4,743 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap-utilities.rtl.min.css | CSS        |          1 |          6 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap.css                   | CSS        |      9,102 |         27 |      1,708 |     10,837 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap.min.css               | CSS        |          2 |          5 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap.rtl.css               | CSS        |      9,104 |          7 |      1,702 |     10,813 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/css/bootstrap.rtl.min.css           | CSS        |          2 |          5 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/js/bootstrap.bundle.js              | JavaScript |      4,836 |        571 |      1,342 |      6,749 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/js/bootstrap.bundle.min.js          | JavaScript |          1 |          6 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/js/bootstrap.esm.js                 | JavaScript |      3,425 |        483 |      1,060 |      4,968 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/js/bootstrap.esm.min.js             | JavaScript |          1 |          6 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/js/bootstrap.js                     | JavaScript |      3,464 |        489 |      1,064 |      5,017 |
+| /opt/lampp/htdocs/DocManager/bootstrap-5.0.2-dist/js/bootstrap.min.js                 | JavaScript |          1 |          6 |          0 |          7 |
+| /opt/lampp/htdocs/DocManager/config/connection.js                                     | JavaScript |          9 |          1 |          2 |         12 |
+| /opt/lampp/htdocs/DocManager/config/fileNames.js                                      | JavaScript |         10 |          1 |          2 |         13 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/dashboard.css                         | CSS        |        155 |          4 |         29 |        188 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/document.css                          | CSS        |        211 |         10 |         41 |        262 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/faculter.css                          | CSS        |        208 |         10 |         40 |        258 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/filiere.css                           | CSS        |        208 |         10 |         40 |        258 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/roles.css                             | CSS        |        208 |         10 |         40 |        258 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/session.css                           | CSS        |        220 |         11 |         41 |        272 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/typeDocument.css                      | CSS        |        208 |         10 |         40 |        258 |
+| /opt/lampp/htdocs/DocManager/css/administrateur/utilisateurs.css                      | CSS        |        208 |         10 |         40 |        258 |
+| /opt/lampp/htdocs/DocManager/css/connection.css                                       | CSS        |        136 |          5 |         21 |        162 |
+| /opt/lampp/htdocs/DocManager/css/etudiant/accueilEtudiant.css                         | CSS        |          0 |          0 |          1 |          1 |
+| /opt/lampp/htdocs/DocManager/css/style.css                                            | CSS        |        143 |          5 |         25 |        173 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/dashboard.html                       | HTML       |         54 |          3 |          7 |         64 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/deleteFaculter.html                  | HTML       |        108 |          4 |         15 |        127 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/deleteFiliere.html                   | HTML       |        108 |          5 |         14 |        127 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/deleteRole.html                      | HTML       |        108 |          4 |         15 |        127 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/deleteSession.html                   | HTML       |        108 |          5 |         13 |        126 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/deleteTypeDocument.html              | HTML       |        107 |          5 |         14 |        126 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/deleteUsers.html                     | HTML       |        108 |          5 |         14 |        127 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/document.html                        | HTML       |        235 |         11 |         31 |        277 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/faculter.html                        | HTML       |         95 |          8 |         10 |        113 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/filiere.html                         | HTML       |        103 |          9 |         10 |        122 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/profile.html                         | HTML       |          0 |          0 |          1 |          1 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/roles.html                           | HTML       |         96 |          8 |          9 |        113 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/session.html                         | HTML       |        278 |         10 |         26 |        314 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/type_document.html                   | HTML       |         96 |          8 |         10 |        114 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/updateFaculter.html                  | HTML       |        113 |          4 |         16 |        133 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/updateFiliere.html                   | HTML       |        113 |          5 |         14 |        132 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/updateRole.html                      | HTML       |        113 |          4 |         16 |        133 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/updateSession.html                   | HTML       |        132 |          5 |         15 |        152 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/updateTypeDocument.html              | HTML       |        113 |          5 |         15 |        133 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/updateUsers.html                     | HTML       |        173 |          6 |         25 |        204 |
+| /opt/lampp/htdocs/DocManager/html/administrateur/utilisateurs.html                    | HTML       |        300 |         21 |         38 |        359 |
+| /opt/lampp/htdocs/DocManager/html/choixUsers.html                                     | HTML       |         59 |          4 |         10 |         73 |
+| /opt/lampp/htdocs/DocManager/html/etudiant/accueilEtudiant.html                       | HTML       |         47 |          3 |          8 |         58 |
+| /opt/lampp/htdocs/DocManager/html/index.html                                          | HTML       |        151 |          6 |          8 |        165 |
+| /opt/lampp/htdocs/DocManager/html/loginAdmin.html                                     | HTML       |        134 |          6 |         21 |        161 |
+| /opt/lampp/htdocs/DocManager/html/loginEtudiant.html                                  | HTML       |        134 |          6 |         21 |        161 |
+| /opt/lampp/htdocs/DocManager/index.js                                                 | JavaScript |         37 |          5 |          8 |         50 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/AdminController.js                 | JavaScript |         33 |          7 |         11 |         51 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/DocumentController.js              | JavaScript |         69 |          9 |         11 |         89 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/EtudiantController.js              | JavaScript |         32 |          7 |         11 |         50 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/FaculterController.js              | JavaScript |         50 |          8 |          9 |         67 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/FiliereController.js               | JavaScript |         50 |          8 |         10 |         68 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/LoginAdminController.js            | JavaScript |         40 |         13 |         14 |         67 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/LoginEtudiantController.js         | JavaScript |         34 |         12 |         11 |         57 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/RolesController.js                 | JavaScript |         49 |          9 |         11 |         69 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/SessionController.js               | JavaScript |         60 |          8 |          9 |         77 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/StatutController.js                | JavaScript |         49 |         10 |         13 |         72 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/TypeDocumentController.js          | JavaScript |         50 |          8 |          9 |         67 |
+| /opt/lampp/htdocs/DocManager/javaScript/controller/UsersController.js                 | JavaScript |         77 |          9 |         13 |         99 |
+| /opt/lampp/htdocs/DocManager/javaScript/jquery.js                                     | JavaScript |      5,404 |          1 |          1 |      5,406 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/AdminModel.js                           | JavaScript |         44 |         10 |         13 |         67 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/DocumentModel.js                        | JavaScript |          0 |          0 |          1 |          1 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/EtudiantModel.js                        | JavaScript |         57 |         10 |         13 |         80 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/FaculterModel.js                        | JavaScript |         61 |         12 |         12 |         85 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/FiliereModel.js                         | JavaScript |         84 |         16 |         17 |        117 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/LoginAdminModel.js                      | JavaScript |          0 |          0 |          1 |          1 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/LoginEtudiantModel.js                   | JavaScript |          0 |          0 |          1 |          1 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/RolesModel.js                           | JavaScript |         59 |          7 |         13 |         79 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/SessionModel.js                         | JavaScript |         56 |         10 |         12 |         78 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/TypeDocumentModel.js                    | JavaScript |         61 |         13 |         15 |         89 |
+| /opt/lampp/htdocs/DocManager/javaScript/model/UsersModel.js                           | JavaScript |        152 |          2 |         16 |        170 |
+| /opt/lampp/htdocs/DocManager/javaScript/script.js                                     | JavaScript |         13 |          1 |          4 |         18 |
+| /opt/lampp/htdocs/DocManager/javaScript/utilisateurs.js                               | JavaScript |          6 |         20 |          5 |         31 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/external/jquery/jquery.js        | JavaScript |      6,767 |      1,887 |      2,063 |     10,717 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/index.html                       | HTML       |        447 |         16 |         41 |        504 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.css                    | CSS        |      1,224 |         49 |         43 |      1,316 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.js                     | JavaScript |     13,872 |      2,110 |      3,088 |     19,070 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.min.css                | CSS        |          1 |          5 |          1 |          7 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.min.js                 | JavaScript |          1 |          4 |          1 |          6 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.structure.css          | CSS        |        821 |         36 |         30 |        887 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.structure.min.css      | CSS        |          1 |          3 |          1 |          5 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.theme.css              | CSS        |        403 |         30 |         14 |        447 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/jquery-ui.theme.min.css          | CSS        |          1 |          3 |          1 |          5 |
+| /opt/lampp/htdocs/DocManager/jquery-ui-1.13.3.custom/package.json                     | JSON       |         84 |          0 |          1 |         85 |
+| /opt/lampp/htdocs/DocManager/package-lock.json                                        | JSON       |      2,043 |          0 |          1 |      2,044 |
+| /opt/lampp/htdocs/DocManager/package.json                                             | JSON       |         22 |          0 |          1 |         23 |
+| Total                                                                                 |            |     90,708 |     10,391 |     19,930 |    121,029 |
++---------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+

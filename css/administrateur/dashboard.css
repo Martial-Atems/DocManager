@@ -141,6 +141,10 @@ body {
     transition: background-color 0.3s;
 }
 
+.navbar .search-box button span {
+    display: none;
+}
+
 .navbar .search-box button:hover {
     background-color: #e0e0e0;
 }
@@ -167,6 +171,19 @@ body {
 
 .content.collapsed {
     margin-left: 80px;
+}
+
+.image_user {
+    position: relative;
+    margin-left: 12px;
+    margin-top: 12px;
+    border-color: #fff;
+    border-radius: 50%;
+}
+
+.image_user img {
+    border-color: #fff;
+    border-radius: 30%;
 }
 
 @media (max-width: 600px) {

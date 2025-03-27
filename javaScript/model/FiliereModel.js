@@ -11,7 +11,7 @@ window.onload = function() {
         faculter.forEach(function(fac) {
         let option = document.createElement('option');
 
-        option.value = fac.id_faculter;  // Utilise l'id_role comme valeur
+        option.value = fac.id_faculter;  // Utilise l'id_faculter comme valeur
         option.textContent = fac.nomFac;  // Affiche le nom du rôle
 
         faculterSelect.appendChild(option);

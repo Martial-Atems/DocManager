@@ -233,6 +233,19 @@ body {
     white-space: nowrap;
 }
 
+.image_user {
+    position: relative;
+    margin-left: 12px;
+    margin-top: 12px;
+    border-color: #fff;
+    border-radius: 50%;
+}
+
+.image_user img {
+    border-color: #fff;
+    border-radius: 30%;
+}
+
 /* Cache certaines colonnes sur les petits écrans */
 @media (max-width: 768px) {
     .hide-on-small {

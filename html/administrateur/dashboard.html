@@ -21,19 +21,24 @@
             <img src="../../image/img.webp" alt="Logo">
             <span>DocManager</span>
         </div>
-        <div class="search-box">
+        <!-- <div class="search-box">
             <input type="search" placeholder="Rechercher">
-            <button><i class="fas fa-search"> ~</i></button>
-        </div>
+            <button><i class="fas fa-search"> <span>~</span></i></button>
+        </div> -->
         <div class="icons">
             <i class="fas fa-user-circle" title="Profil"></i>
         </div>
     </div>
 
     <div class="sidebar" id="sidebar">
+
+        <!-- image utilisateur -->
+        <div class="image_user">
+            <img src="../../image/images.png" alt="">
+        </div>
         <hr>
         <ul>
-            <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
+            <li><a href="dashboard.html"><i class="fas fa-home active"></i><span class="text">Dashboard</span></a></li>
             <li><a href="utilisateurs.html"><i class="fa-solid fa-users"></i><span class="text">Utilisateurs</span></a></li>
             <li><a href="roles.html"><i class="fa-brands fa-critical-role"></i><span class="text">Roles</span></a></li>
             <li><a href="faculter.html"><i class="fas fa-folder"></i><span class="text">Faculter</span></a></li>
@@ -54,11 +59,86 @@
         <h1>Bienvenue sur votre interface utilisateur de DocManager</h1>
         <p>Explorez les fonctionnalités et personnalisez selon vos besoins.</p>
 
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card text-white bg-primary mb-3">
+                    <div class="card-header">Nombre total d'utilisateurs</div>
+                    <div class="card-body">
+                        <h5 class="card-title" id="totalUsers">Loading...</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-header">Nombre d'étudiants</div>
+                    <div class="card-body">
+                        <h5 class="card-title" id="totalStudents">Loading...</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-header">Nombre total de documents</div>
+                    <div class="card-body">
+                        <h5 class="card-title" id="totalDocuments">Loading...</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card text-white bg-danger mb-3">
+                    <div class="card-header">Nombre de filière</div>
+                    <div class="card-body">
+                        <h5 class="card-title" id="totalDocuments">Loading...</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card text-white bg-secondary mb-3">
+                    <div class="card-header">Nombre de faculter</div>
+                    <div class="card-body">
+                        <h5 class="card-title" id="totalDocuments">Loading...</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Insertion du graphique -->
+        <canvas id="myChart"></canvas>
+
     </div>
 
     <!-- Scripts -->
     <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script src="../../javaScript/utilisateurs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Sélectionner le canvas
+        const ctx = document.getElementById('myChart').getContext('2d');
+
+        // Créer un graphique avec Chart.js
+        const myChart = new Chart(ctx, {
+            type: 'bar', // Type de graphique ('bar', 'line', 'pie', 'doughnut', etc.)
+            data: {
+                labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juillet'], // Légendes
+                datasets: [{
+                    label: 'Documentation', // Légende du graphique
+                    data: [12, 19, 3, 5, 2, 3], // Valeurs
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)', // Couleur des barres
+                    borderColor: 'rgba(54, 162, 235, 1)', // Bordure des barres
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true, // Rend le graphique responsive
+                scales: {
+                    y: {
+                        beginAtZero: true // Commencer l'axe Y à 0
+                    }
+                }
+            }
+        });
+    </script>
 
 </body>
 </html>

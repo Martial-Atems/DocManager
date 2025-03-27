@@ -203,6 +203,19 @@ body {
     display: none;
 }
 
+.image_user {
+    position: relative;
+    margin-left: 12px;
+    margin-top: 12px;
+    border-color: #fff;
+    border-radius: 50%;
+}
+
+.image_user img {
+    border-color: #fff;
+    border-radius: 30%;
+}
+
 @media (max-width: 600px) {
     .navbar .logo {
         padding: 0 40px;

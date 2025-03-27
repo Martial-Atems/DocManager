@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
     });
 });
 
-// Route pour recuperer les Roles ds la Bdd
+// Route pour recuperer les type de document ds la Bdd
 router.get('/', (req, res) => {
     const sql = 'SELECT * FROM type_document';
     connection.query(sql, (err, results) => {

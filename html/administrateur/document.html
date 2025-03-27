@@ -31,6 +31,10 @@
     </div>
 
     <div class="sidebar" id="sidebar">
+        <!-- image utilisateur -->
+        <div class="image_user">
+            <img src="../../image/images.png" alt="">
+        </div>
         <hr>
         <ul>
             <li><a href="dashboard.html"><i class="fas fa-home"></i><span class="text">Dashboard</span></a></li>
@@ -52,32 +56,48 @@
 
     <div class="content" id="content">
 
-        <!-- Modal pour l'ajout d'un role -->
-        <div class="modal fade" id="modalAjoutRole" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <!-- Modal pour l'ajout d'un Document -->
+        <div class="modal fade" id="ajoutRapport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
             <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="staticBackdropLabelRole"><i class="fa-solid fa-plus"></i><span>Ajouter un rôle</span></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelAjoutDoc">Ajouter votre Document</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="rapportForm">
+                            <!-- Message de succès -->
+                            <div id="successMessage" class="alert alert-success d-none"></div>
 
-                    <!-- Pour afficher le message de succes -->
-                    <small id="successMessage"> </small>
+                            <div class="mb-3">
+                                <label for="typeDocSelect1" class="col-form-label">Type de document :</label>
+                                <select name="id_typedoc" id="typeDocSelect1" class="form-control">
+                                    <option value=""></option>
+                                    
+                                    <!-- lyste des type de document -->
+                                </select>
+                                <small class="text-danger d-none" id="typeDocError">Ce champ est requis</small>
+                            </div>
 
-                    <form id="formAjoutRole">
-                        <div class="mb-3">
-                            <label for="nomRole" class="col-form-label">Nom du rôle:</label>
-                            <input type="text" class="form-control" id="nomRole" name="nomRole" placeholder="Entrer le nom du role">
-                            <small class="error_message" id="nomRoleError">Ce champs ne doit pas être vide!!</small>
-                        </div>
-                    </form>
+                            <div class="mb-3">
+                                <label for="libelledoc" class="col-form-label">Libellé du Document :</label>
+                                <input type="text" name="libelledoc" id="libelledoc" class="form-control" placeholder="Entrer le libellé">
+                                <small class="text-danger d-none" id="nomLibDocError">Ce champ est requis</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nomdoc" class="col-form-label">Nom du Document :</label>
+                                <input type="file" name="nomdoc" id="nomdoc" class="form-control" accept=".pdf,.docx">
+                                <small class="text-danger d-none" id="nomDocError">Veuillez sélectionner un fichier</small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success" form="rapportForm">Ajouter</button>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-                <button type="submit" class="btn btn-primary" form="formAjoutRole">Ajouter</button>
-                </div>
-            </div>
             </div>
         </div>
 
@@ -93,8 +113,15 @@
                         <!-- Les types de document seront ajoutés ici -->
                     </select>
                 </div>
+
             </form>
             <table class="table table-bordered table-striped table-hover table-primary">
+                <!-- Ajout d'un document -->
+                <div class="btn btn-file">
+                    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#ajoutRapport">
+                        <i class="fa-solid fa-plus"></i><span>Ajouter un document</span>
+                    </button>
+                </div>
                 <thead>
                     <tr class="col-primary">
                         <th>ID</th>
@@ -127,6 +154,9 @@
                 .then(response => response.json())
                 .then(typeDocument => {
                     const typeDocSelect = document.getElementById('typeDocSelect');
+                    const typeDocSelect1 = document.getElementById('typeDocSelect1')
+
+                    typeDocSelect1.innerHTML = '<option value=""> </option>'; //option vide
 
                     typeDocument.forEach(function(typeDoc) {
                         let option = document.createElement('option');
@@ -134,6 +164,12 @@
                         option.textContent = typeDoc.libelle_type_doc;  // Affiche le nom du type de document
 
                         typeDocSelect.appendChild(option);
+
+                        let option1 = document.createElement('option');
+                        option1.value = typeDoc.id_type_doc;  // Utilise l'id comme valeur
+                        option1.textContent = typeDoc.libelle_type_doc;  // Affiche le nom du type de document
+
+                        typeDocSelect1.appendChild(option1);
                     });
                 })
                 .catch(error => console.error('Erreur:', error));
@@ -145,24 +181,24 @@
         });
 
         function fetchDocuments(filterType = 'All') {
-            fetch('http://localhost:5000/documents')
+            fetch('http://localhost:5000/docs')
             .then(response => response.json())
             .then(documents => {
                 const tableBody = document.getElementById('documents-table-body');
                 tableBody.innerHTML = ''; // Clear existing rows
 
                 documents.forEach(doc => {
-                    if (filterType === 'All' || doc.nom_typedoc === filterType) {
+                    if (filterType === 'All' || doc.libelle_type_doc === filterType) {
                         // Création d'une nouvelle ligne pour chaque document qui correspond au filtre
                         const row = document.createElement('tr');
                         row.innerHTML = `
                             <td>${doc.id_doc}</td>
-                            <td>${doc.nom_user} ${doc.prenom_user}</td>
-                            <td>${doc.nom_typedoc}</td>
-                            <td>${doc.libelledoc}</td>
-                            <td>${doc.nomdoc}</td>
+                            <td>${doc.nom} ${doc.prenom}</td>
+                            <td>${doc.libelle_type_doc}</td>
+                            <td>${doc.libelle_doc}</td>
+                            <td>${doc.titre}</td>
                             <td> 
-                                <button type="button" class="btn btn-success btn-sm" data-id="${doc.id_doc}" data-nomdoc="${doc.nomdoc}" onclick="downloadFunction(this)">
+                                <button type="button" class="btn btn-success btn-sm" data-id="${doc.id_doc}" data-nomdoc="${doc.titre}" onclick="downloadFunction(this)">
                                     Télécharger
                                 </button> 
                             </td>
@@ -170,6 +206,119 @@
                         tableBody.appendChild(row);
                     }
                 });
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+
+    <!-- Script pour ajouter/soumettre un document -->
+    <script>
+        document.getElementById('rapportForm').addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            function showError(element, message) {
+                element.textContent = message;
+                element.classList.remove('d-none');
+            }
+
+            function hideError(element) {
+                element.classList.add('d-none');
+            }
+
+            // Réinitialisation des erreurs
+            const typeDocError = document.getElementById('typeDocError');
+            const libelleDocError = document.getElementById('nomLibDocError');
+            const nomDocError = document.getElementById('nomDocError');
+            const successMessage = document.getElementById('successMessage');
+
+            hideError(typeDocError);
+            hideError(libelleDocError);
+            hideError(nomDocError);
+            successMessage.classList.add('d-none');
+
+            // Récupération des valeurs
+            const nomTypeDoc = document.getElementById('typeDocSelect1').value.trim();
+            const libelledoc = document.getElementById('libelledoc').value.trim();
+            const nomDoc = document.getElementById('nomdoc').files[0];
+
+            let formValid = true;
+
+            if (nomTypeDoc === "") {
+                showError(typeDocError, 'Veuillez sélectionner un type de document.');
+                formValid = false;
+            }
+            if (libelledoc === "") {
+                showError(libelleDocError, 'Veuillez entrer un libellé.');
+                formValid = false;
+            }
+            if (!nomDoc) {
+                showError(nomDocError, 'Veuillez sélectionner un fichier.');
+                formValid = false;
+            }
+
+            if (!formValid) return;
+
+            const formData = new FormData();
+            formData.append('id_typedoc', nomTypeDoc);
+            formData.append('libelledoc', libelledoc);
+            formData.append('nomdoc', nomDoc);
+
+            const userId = localStorage.getItem('storageKey');
+            if (!userId) {
+                alert("Vous devez être connecté.");
+                return;
+            }
+            formData.append('userId', userId);
+
+            console.log(formData);
+
+            try {
+                const response = await fetch('http://localhost:5000/docs', { 
+                    method: 'POST', 
+                    body: formData 
+                });
+
+                const data = await response.json();
+
+                if (!response.ok) throw new Error(data.message || "Erreur serveur");
+
+                successMessage.textContent = "Document ajouté avec succès !";
+                successMessage.classList.remove('d-none');
+
+                setTimeout(() => location.reload(), 1000);
+            } catch (error) {
+                showError(nomDocError, "Erreur lors de l'ajout du document.");
+                console.error("Erreur:", error);
+            }
+        });
+    </script>
+
+    <script>
+        // Script pour télécharger un document
+        function downloadFunction(button) {
+            const docId = button.getAttribute('data-id');
+            // Appeler la route Express pour télécharger le fichier
+            fetch(`http://localhost:5000/docs/download/${docId}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                } else {
+                    throw new Error('Erreur lors de la récupération du fichier');
+                }
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+
+                // nom du fichier telecharger
+                const nomFichier = button.getAttribute('data-nomdoc');
+
+                a.download = nomFichier; // Permet de télécharger le fichier
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
             })
             .catch(error => console.error('Erreur:', error));
         }

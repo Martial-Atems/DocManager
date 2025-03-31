@@ -29,3 +29,16 @@ function toggleSidebar() {
 
 // // Mettre a jour l'heure et la date toutes les secondes
 // setInterval(afficherHeureEtDate, 1000);
+
+function toggleProfile(event) {
+    event.stopPropagation();
+    const profile = document.getElementById("profile");
+    profile.style.display = profile.style.display === "none" ? "block" : "none";
+}
+
+function hideProfile(event) {
+    const profile = document.getElementById("profile");
+    if (profile.style.display === "block" && !profile.contains(event.target)) {
+        profile.style.display = "none";
+    }
+}

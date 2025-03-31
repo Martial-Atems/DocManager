@@ -141,30 +141,44 @@ document.addEventListener('DOMContentLoaded', function() {
 //script pour recuperer les donnees de la table users et les afficher dans la page
 document.addEventListener('DOMContentLoaded', function() {
     fetch('http://localhost:5000/users')
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) {
+            throw new Error("Erreur lors de la récupération des utilisateurs");
+        }
+        return response.json();
+    })
     .then(users => {
         const tableBody = document.getElementById('users-table-body');
+
         users.forEach(user => {
-        const row = document.createElement('tr');
+            const row = document.createElement('tr');
             row.innerHTML = `
-                <td id="userId">${user.id_utilisateur}</td>
+                <td>${user.id_utilisateur}</td>
                 <td>${user.nomRole}</td>
                 <td>${user.nom}</td>
                 <td class="hide-on-small">${user.prenom}</td>
                 <td class="hide-on-small">${user.sexe}</td>
                 <td class="hide-on-small">${user.adresse}</td>
                 <td class="hide-on-small">${user.numeroTel}</td>
-                <td class="hide-on-small">${user.email}</td>
                 <td>
-                  
-                    <a href="/html/administrateur/deleteUsers.html?id=${user.id_utilisateur}" style = "text-decoration: none;" class="btn btn-danger btn-sm deleteBtn" > Supprimer </a>
-
-                    <a href="/html/administrateur/updateUsers.html?id=${user.id_utilisateur}&id_role=${user.nomRole}&nom=${user.nom}&prenom=${user.prenom}&datenais=${user.dateNais}&lieunais=${user.lieuNais}&sexe=${user.sexe}&adresse=${user.adresse}&tel=${user.numeroTel}" style = "text-decoration: none;" class="btn btn-primary btn-sm editBtn" > Modifier </a>
-                
+                    <a href="/html/administrateur/deleteUsers.html?id=${user.id_utilisateur}" class="btn btn-danger btn-sm">Supprimer</a>
+                    <a href="/html/administrateur/updateUsers.html?id=${user.id_utilisateur}&id_role=${user.nomRole}&nom=${user.nom}&prenom=${user.prenom}&datenais=${user.dateNais}&lieunais=${user.lieuNais}&sexe=${user.sexe}&adresse=${user.adresse}&tel=${user.numeroTel}" class="btn btn-primary btn-sm">Modifier</a>
                 </td>
             `;
             tableBody.appendChild(row);
         });
-        
-    });        
+
+        // Initialisation de DataTables après le chargement des données
+        $('#dataTablese').DataTable({
+            responsive: true,
+            stateSave: true,
+            language: {
+                url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/French.json"
+            }
+        });
+
+    })
+    .catch(error => {
+        console.error("Erreur lors du chargement des utilisateurs :", error);
+    });
 });

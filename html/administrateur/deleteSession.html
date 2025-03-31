@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/administrateur/roles.css">
 </head>
-<body>
+<body onclick="hideProfile(event)">
     <div class="navbar">
         <div class="menu-icon" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
@@ -26,7 +26,7 @@
             <button><i class="fas fa-search"> <span>~</span></i></button>
         </div> -->
         <div class="icons">
-            <i class="fas fa-user-circle" title="Profil"></i>
+            <i class="fas fa-user-circle" title="Account" onclick="toggleProfile(event)"></i>
         </div>
     </div>
 
@@ -55,6 +55,13 @@
     </div>
 
     <div class="content" id="content">
+        <div class="profile-container" id="profile">
+            <img src="../../image/images.png" alt="Photo de profil"><br>
+            <a href="#"><i class="fa-solid fa-user"></i> Profile</a><br>
+            <a href="#"><i class="fa-solid fa-cog"></i> Paramètres</a><br>
+            <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+        </div>
+
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="staticBackdropLabelModifRole">Suppression de la session</h5>

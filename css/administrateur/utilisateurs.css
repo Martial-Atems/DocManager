@@ -235,15 +235,41 @@ body {
 /* Styles pour rendre le tableau responsive */
 .container {
     width: 100%;
-    overflow-x: auto;
+    /* overflow-x: auto; */
 }
 
 /* Permet le défilement horizontal sur les petits écrans */
 .table-responsive {
     display: block;
     width: 100%;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     white-space: nowrap;
+}
+
+.profile-container {
+    position: absolute;
+    background: #000;
+    padding: 20px;
+    display: none;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 15%;
+    margin: 20px auto;
+    top: 38px;
+    left: 92%;
+    transform: translate(-50%, 0);
+}
+.profile-container img {
+    width: 30px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-container a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+    margin: 2px 0;
 }
 
 /* Cache certaines colonnes sur les petits écrans */

@@ -11,9 +11,11 @@
     <!-- Liens CSS -->
     <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/administrateur/utilisateurs.css">
+    <!-- Inclusion des fichiers CSS de DataTables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 </head>
-<body>
+<body onclick="hideProfile(event)">
     <div class="navbar">
         <div class="menu-icon" onclick="toggleSidebar()">
             <i class="fas fa-bars"></i>
@@ -22,12 +24,12 @@
             <img src="../../image/img.webp" alt="Logo">
             <span>DocManager</span>
         </div>
-        <div class="search-box">
+        <!-- <div class="search-box">
             <input type="search" placeholder="Rechercher">
             <button><i class="fas fa-search"> <span>~</span></i></button>
-        </div>
+        </div> -->
         <div class="icons">
-            <i class="fas fa-user-circle" title="Profil"></i>
+            <i class="fas fa-user-circle" title="Account" onclick="toggleProfile(event)"></i>
         </div>
     </div>
 
@@ -61,6 +63,12 @@
     </div>
 
     <div class="content" id="content">
+        <div class="profile-container" id="profile">
+            <img src="../../image/images.png" alt="Photo de profil"><br>
+            <a href="#"><i class="fa-solid fa-user"></i> Profile</a><br>
+            <a href="#"><i class="fa-solid fa-cog"></i> Paramètres</a><br>
+            <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+        </div>
 
         <!-- Modal pour l'ajout d'un utilisateur -->
         <div class="modal fade" id="AjoutModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -243,24 +251,22 @@
             </button>
 
             <div class="table-responsive">
-                <table id="dataTablese" class="table table-bordered table-striped table-primary table-hover w-100">
-                        <thead>
-                            <tr class="col-primary">
-                                <th>ID</th>
-                                <th>ROLE</th>
-                                <th>NOM(S)</th>
-                                <th class="hide-on-small">PRENOM(S)</th>
-                                <th class="hide-on-small">SEXE</th>
-                                <th class="hide-on-small">ADRESSE</th>
-                                <th class="hide-on-small">TÉLÉPHONE</th>
-                                <th class="hide-on-small">ADRESSE MAIL</th>
-                                <th>ACTION</th>                  
-                            </tr>
-                        </thead>
-                        <tbody id="users-table-body">
-                            <!-- Données insérées ici -->
-                            
-                        </tbody>
+                <table id="dataTablese" class="table table-bordered table-striped table-primary table-hover">
+                    <thead>
+                        <tr class="col-primary">
+                            <th>ID</th>
+                            <th>ROLE</th>
+                            <th>NOM(S)</th>
+                            <th class="hide-on-small">PRENOM(S)</th>
+                            <th class="hide-on-small">SEXE</th>
+                            <th class="hide-on-small">ADRESSE</th>
+                            <th class="hide-on-small">TÉLÉPHONE</th>
+                            <th>ACTION</th>                  
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                      
+                    </tbody>
                 </table>
             </div>
         </div>        
@@ -271,6 +277,7 @@
     <!-- Inclusion de jQuery et DataTables -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+
     <script src="../../javaScript/utilisateurs.js"></script>
     <script src="../../javaScript/model/UsersModel.js"></script>
     <script src="../../javaScript/model/EtudiantModel.js"></script>
@@ -354,13 +361,34 @@
     </script>
 
     <!-- Script pour filtrer les données du tableau -->
-    <script>
+    <!-- <script>
         $(document).ready(function() {
             $('#dataTablese').DataTable({
-                stateSave: true
+                responsive: true,
+                stateSave: true,
+                ajax: {
+                    url: 'http://localhost:5000/users', // URL de l'API pour récupérer les utilisateurs
+                    dataType: 'json',
+                    type: 'GET',
+                    dataSrc: ''
+                },
+                columns: [
+                    { data: 'id' },
+                    { data: 'role' },
+                    { data: 'nom' },
+                    { data: 'prenom' },
+                    { data: 'sexe' },
+                    { data: 'adresse' },
+                    { data: 'telephone' },
+                    { data: 'action' }
+                ],
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/French.json"
+                }
             });
         });
-    </script>
+
+    </script> -->
 
 </body>
 </html>

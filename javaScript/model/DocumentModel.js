@@ -53,6 +53,15 @@ function fetchDocuments(filterType = 'All') {
                 tableBody.appendChild(row);
             }
         });
+
+        // Initialisation de DataTables après le chargement des données
+        $('#dataTablese').DataTable({
+            responsive: true,
+            stateSave: true,
+            language: {
+                // url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/French.json"
+            }
+        });
     })
     .catch(error => console.error('Erreur:', error));
 }

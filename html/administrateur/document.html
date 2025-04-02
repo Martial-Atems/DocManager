@@ -11,6 +11,9 @@
     <!-- Liens CSS -->
     <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../css/administrateur/document.css">
+    <!-- Inclusion des fichiers CSS de DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
 </head>
 <body onclick="hideProfile(event)">
     <div class="navbar">
@@ -121,7 +124,7 @@
                 </div>
 
             </form>
-            <table class="table table-bordered table-striped table-hover table-primary">
+            <table id="dataTablese" class="table table-bordered table-striped table-hover table-primary">
                 <!-- Ajout d'un document -->
                 <div class="btn btn-file">
                     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#ajoutRapport">
@@ -146,6 +149,10 @@
     </div>
 
     <!-- Scripts -->
+     <!-- Inclusion de jQuery et DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    
     <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
     <script src="../../javaScript/jquery.js"></script>
     <script src="../../javaScript/utilisateurs.js"></script>

@@ -50,7 +50,12 @@ router.post('/', (req, res) => {
             }
 
             // Si l'utilisateur est un admin, rediriger vers son espace
-            const redirectUrl = '/html/administrateur/dashboard.html';
+            let redirectUrl = "";
+            if (user.id_role == 1) {
+                redirectUrl = '/html/administrateur/dashboard.html';
+            } else {
+                return res.json({ error: "email" });
+            }
 
             // Envoi de l'ID utilisateur et de l'URL de redirection
             res.json({ 

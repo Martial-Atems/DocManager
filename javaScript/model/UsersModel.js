@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', function() {
             responsive: true,
             stateSave: true,
             language: {
-                url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/French.json"
+                // url: "//cdn.datatables.net/plug-ins/1.11.5/i18n/French.json"
             }
         });
 

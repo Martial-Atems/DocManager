@@ -1,12 +1,19 @@
 import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
-// Configuration de multer pour gérer l'upload de fichiers
+// Définir __dirname pour les modules ES
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Définir le stockage
 const storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-        cb(null, 'uploads/'); // Dossier où les fichiers seront stockés
+    destination: (req, file, cb) => {
+        const uploadPath = path.join(__dirname, '..', 'uploads'); // Assurer un chemin correct
+        cb(null, uploadPath);
     },
-    filename: function (req, file, cb) {
-        cb(null, file.originalname); // fichier avec son nom original
+    filename: (req, file, cb) => {
+        cb(null, file.originalname);
     }
 });
 

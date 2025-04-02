@@ -49,7 +49,6 @@ router.get('/', (req, res) => {
     connection.query(sql, (err, results) => {
       if(err) throw err;
       res.send(results);
-      console.log(results);
       
     });
 });

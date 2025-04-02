@@ -125,30 +125,18 @@
 
                         const data = await response.json(); // Récupère les données une seule fois
                         
-                        if (response.ok) {
-                            if (data.redirectUrl) {
-                                // Stocke l'ID de l'utilisateur dans localStorage avec une clé unique basée sur l'email
-                                localStorage.setItem('storageKey', data.userId);
-                                
-                                // Redirige l'utilisateur vers la page appropriée
-                                window.location.href = data.redirectUrl;
-                            } else {
-                                if (data.error) {
-                                    // Afficher les messages d'erreur
-                                    if (data.error === 'email') {
-                                        document.getElementById('emailError').style.display = 'block';
-                                    } else if (data.error === 'password') {
-                                        document.getElementById('passwordError').style.display = 'block';
-                                    } else {
-                                        console.error('Erreur non reconnue:', data.error);
-                                    }
-                                } else {
-                                    console.error('Réponse inattendue du serveur.');
-                                }
-                            }
+                        if (data.success) {
+                            localStorage.setItem('storageKey', data.userId);
+                            window.location.href = data.redirectUrl;
                         } else {
-                            console.error('Réponse du serveur non ok');
-                        }
+                            if (data.error === 'email') {
+                                showError(document.getElementById('emailError'), 'Email incorrect');
+                            } else if (data.error === 'password') {
+                                showError(document.getElementById('passwordError'), 'Mot de passe incorrect');
+                            } else {
+                                console.error('Erreur inconnue:', data.error);
+                            }
+                        }        
                     } catch (error) {
                         console.error('Erreur lors de la requête:', error);
                     }

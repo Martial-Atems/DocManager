@@ -60,27 +60,34 @@ function fetchDocuments(filterType = 'All') {
 //Script pour ajouter/soumettre un document
 document.getElementById('rapportForm').addEventListener("submit", async function(event) {
     event.preventDefault();
+
     function showError(element, message) {
         element.textContent = message;
         element.classList.remove('d-none');
     }
+
     function hideError(element) {
         element.classList.add('d-none');
     }
+
     // Réinitialisation des erreurs
     const typeDocError = document.getElementById('typeDocError');
     const libelleDocError = document.getElementById('nomLibDocError');
     const nomDocError = document.getElementById('nomDocError');
     const successMessage = document.getElementById('successMessage');
+
     hideError(typeDocError);
     hideError(libelleDocError);
     hideError(nomDocError);
     successMessage.classList.add('d-none');
+
     // Récupération des valeurs
     const nomTypeDoc = document.getElementById('typeDocSelect1').value.trim();
     const libelledoc = document.getElementById('libelledoc').value.trim();
     const nomDoc = document.getElementById('nomdoc').files[0];
+
     let formValid = true;
+
     if (nomTypeDoc === "") {
         showError(typeDocError, 'Veuillez sélectionner un type de document.');
         formValid = false;
@@ -93,29 +100,35 @@ document.getElementById('rapportForm').addEventListener("submit", async function
         showError(nomDocError, 'Veuillez sélectionner un fichier.');
         formValid = false;
     }
+
     if (!formValid) return;
+
     const formData = new FormData();
     formData.append('id_typedoc', nomTypeDoc);
     formData.append('libelledoc', libelledoc);
     formData.append('nomdoc', nomDoc);
+
     const userId = localStorage.getItem('storageKey');
     if (!userId) {
-        showError(nomDocError, "Erreur lors de l'ajout du document.");
-        console.error("Erreur:", error);
+        showError(nomDocError, "Utilisateur non authentifié.");
         return;
     }
+
     formData.append('userId', userId);
-    console.log(formData);
+
     try {
         const response = await fetch('http://localhost:5000/docs', { 
             method: 'POST', 
             body: formData 
         });
+
         const data = await response.json();
+
         if (!response.ok) throw new Error(data.message || "Erreur serveur");
+
         successMessage.textContent = "Document ajouté avec succès !";
         successMessage.classList.remove('d-none');
-        setTimeout(() => location.reload(), 1000);
+        setTimeout(() => location.reload(), 3000);
     } catch (error) {
         showError(nomDocError, "Erreur lors de l'ajout du document.");
         console.error("Erreur:", error);

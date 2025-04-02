@@ -1,5 +1,4 @@
 //Script pour afficher les documents 
-
 document.addEventListener('DOMContentLoaded', function() {
     fetchDocuments(); // Initial fetch to load all documents
     // Récupère et affiche les types de documents dans le select

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mes Document</title>
+
+    <!-- Liens font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/administrateur/document.css">
+    <!-- Inclusion des fichiers CSS de DataTables -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.dataTables.min.css">
+</head>
+<body onclick="hideProfile(event)">
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <!-- <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"> <span>~</span></i></button>
+        </div> -->
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Account" onclick="toggleProfile(event)"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <!-- image utilisateur -->
+        <div class="image_user">
+            <img src="../../image/téléchargé (3).png" alt="">
+        </div>
+        <hr>
+        <ul>
+            <li><a href="accueilEtudiant.html"><i class="fas fa-home"></i><span class="text">Accueil</span></a></li>
+            <li><a href="mesRapport.html"><i class="fas fa-file-alt"></i><span class="text">Mes Rapports</span></a></li>
+            <!-- <li><a href="#"><i class="fas fa-briefcase"></i> Mes Stages</a></li> -->
+            <!-- <li><a href="#"><i class="fas fa-comments"></i> Discussions</a></li> -->
+        </ul>
+            <hr>
+        <ul>
+            <!-- <li><i class="fas fa-clock"></i><span class="text">Historique</span></li> -->
+            <!-- <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li> -->
+            <li><i class="fas fa-cog"></i><span class="text">Paramètres</span></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+        <div class="profile-container" id="profile">
+            <img src="../../image/images.png" alt="Photo de profil"><br>
+            <a href="#"><i class="fa-solid fa-user"></i> Profile</a><br>
+            <a href="#"><i class="fa-solid fa-cog"></i> Paramètres</a><br>
+            <a href="#"><i class="fa-solid fa-right-from-bracket"></i> Déconnexion</a>
+        </div>
+
+        <!-- Modal pour l'ajout d'un Document -->
+        <div class="modal fade" id="ajoutRapport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="staticBackdropLabelAjoutDoc">Ajouter votre Document</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="rapportForm">
+                            <!-- Message de succès -->
+                            <div id="successMessage" class="alert alert-success d-none"></div>
+
+                            <div class="mb-3">
+                                <label for="typeDocSelect1" class="col-form-label">Type de document :</label>
+                                <select name="id_typedoc" id="typeDocSelect" class="form-control">
+                                    <option value=""></option>
+                                    
+                                    <!-- lyste des type de document -->
+                                </select>
+                                <small class="text-danger d-none" id="typeDocError">Ce champ est requis</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="libelledoc" class="col-form-label">Libellé du Document :</label>
+                                <input type="text" name="libelledoc" id="libelledoc" class="form-control" placeholder="Entrer le libellé">
+                                <small class="text-danger d-none" id="nomLibDocError">Ce champ est requis</small>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nomdoc" class="col-form-label">Nom du Document :</label>
+                                <input type="file" name="nomdoc" id="nomdoc" class="form-control" accept=".pdf,.docx">
+                                <small class="text-danger d-none" id="nomDocError">Veuillez sélectionner un fichier</small>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                        <button type="submit" class="btn btn-success" form="rapportForm">Ajouter</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tableau pour la gestion des documents de l'etudiant -->
+        <div class="container mt-5">
+            <!-- Contenue de la page pour la liste des rapports -->
+            <div class="container mt-5">
+                <h2>Liste des Documents</h2>
+                <br>
+                <table id="dataTablese" class="table table-bordered table-striped table-hover table-primary">
+                    <!-- Ajout d'un document -->
+                    <div class="btn btn-file">
+                        <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#ajoutRapport">
+                            <i class="fa-solid fa-plus"></i><span>Ajouter un document</span>
+                        </button>
+                    </div>
+
+                    <thead>
+                        <tr class="col-primary">
+                            <th>ID</th>
+                            <th>TYPE DE DOCUMENT</th>
+                            <th>LIBELLE</th>
+                            <th>TITRE</th>
+                            <th>ACTIONS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="documents-table">
+                        <!-- Contenue de la liste des docoments -->
+                    </tbody>
+                </table>
+            </div>
+        </div>        
+    </div>
+
+    <!-- Scripts -->
+     <!-- Inclusion de jQuery et DataTables -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../javaScript/jquery.js"></script>
+    <script src="../../javaScript/utilisateurs.js"></script>
+    <script src="../../javaScript/model/MesRapportModel.js"></script>
+
+    <script>
+        // Script pour télécharger un document
+        function downloadFunction(button) {
+            const docId = button.getAttribute('data-id');
+            // Appeler la route Express pour télécharger le fichier
+            fetch(`http://localhost:5000/docs/download/${docId}`)
+            .then(response => {
+                if (response.ok) {
+                    return response.blob();
+                } else {
+                    throw new Error('Erreur lors de la récupération du fichier');
+                }
+            })
+            .then(blob => {
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement("a");
+                a.href = url;
+
+                // nom du fichier telecharger
+                const nomFichier = button.getAttribute('data-nomdoc');
+
+                a.download = nomFichier; // Permet de télécharger le fichier
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+</body>
+</html>

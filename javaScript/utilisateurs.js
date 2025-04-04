@@ -42,3 +42,13 @@ function hideProfile(event) {
         profile.style.display = "none";
     }
 }
+
+// Script pour la deconnection
+function log_out(){     
+    // recuperation de l'id dans le localStorage
+    const userId = localStorage.getItem('storageKey');
+    // Supprimer l'ID de l'utilisateur du localStorage
+    localStorage.removeItem('storageKey');
+    // Rediriger vers la page d'accueil
+    window.location.href = '../choixUsers.html';
+}

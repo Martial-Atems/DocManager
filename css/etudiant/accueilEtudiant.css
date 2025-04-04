@@ -173,6 +173,22 @@ body {
     margin-left: 80px;
 }
 
+/* texte d'erreur */
+.error_message {
+    display: none;
+    color: red;
+}
+
+/* text de succes */
+#successMessage {
+    display: none; 
+    color: green; 
+    font-weight: bold; 
+    text-align: center; 
+    width: 300px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
 .image_user {
     position: relative;
     margin-left: 12px;
@@ -210,6 +226,12 @@ body {
     color: #fff;
     text-decoration: none;
     margin: 2px 0;
+}
+
+.profile-container i {
+    color: #fff;
+    margin: 2px 0;
+    cursor: pointer;
 }
 
 @media (max-width: 600px) {

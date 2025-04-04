@@ -272,6 +272,12 @@ body {
     margin: 2px 0;
 }
 
+.profile-container i {
+    color: #fff;
+    margin: 2px 0;
+    cursor: pointer;
+}
+
 /* Cache certaines colonnes sur les petits écrans */
 @media (max-width: 768px) {
     .hide-on-small {

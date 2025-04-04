@@ -212,6 +212,12 @@ body {
     margin: 2px 0;
 }
 
+.profile-container i {
+    color: #fff;
+    margin: 2px 0;
+    cursor: pointer;
+}
+
 @media (max-width: 600px) {
     .sidebar {
         width: 80px;

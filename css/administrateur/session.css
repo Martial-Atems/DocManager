@@ -242,6 +242,12 @@ body {
     margin: 2px 0;
 }
 
+.profile-container i {
+    color: #fff;
+    margin: 2px 0;
+    cursor: pointer;
+}
+
 @media (max-width: 600px) {
     .navbar .logo {
         padding: 0 40px;

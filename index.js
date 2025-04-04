@@ -16,6 +16,7 @@ import LoginEtudiantController from './javaScript/controller/LoginEtudiantContro
 import DocumentController from './javaScript/controller/DocumentController.js';
 import DashboardController from './javaScript/controller/DashboardController.js';
 import MesRapportController from './javaScript/controller/MesRapportController.js';
+import ParametreAdminController from './javaScript/controller/ParametreAdminController.js';
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.use('/loginEtuds', LoginEtudiantController);
 app.use('/docs', DocumentController);
 app.use('/dashboards', DashboardController);
 app.use('/rapports', MesRapportController);
+app.use('/paramAdmins', ParametreAdminController);
 
 // Démarrage du serveur avec gestion des erreurs
 const PORT = 5000;

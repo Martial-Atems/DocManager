@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accueil</title>
+
+    <!-- Liens font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Liens CSS -->
+    <link rel="stylesheet" href="../../bootstrap-5.0.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../css/etudiant/accueilEtudiant.css">
+</head>
+<body onclick="hideProfile(event)">
+    <div class="navbar">
+        <div class="menu-icon" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="logo">
+            <img src="../../image/img.webp" alt="Logo">
+            <span>DocManager</span>
+        </div>
+        <!-- <div class="search-box">
+            <input type="search" placeholder="Rechercher">
+            <button><i class="fas fa-search"> ~</i></button>
+        </div> -->
+        <div class="icons">
+            <i class="fas fa-user-circle" title="Account" onclick="toggleProfile(event)"></i>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <!-- image utilisateur -->
+        <div class="image_user">
+            <img src="../../image/téléchargé (3).png" alt="">
+        </div>
+        <hr>
+        <ul>
+            <li><a href="accueilEtudiant.html"><i class="fas fa-home"></i><span class="text">Accueil</span></a></li>
+            <li><a href="mesRapport.html"><i class="fas fa-file-alt"></i><span class="text">Mes Rapports</span></a></li>
+            <!-- <li><a href="#"><i class="fas fa-briefcase"></i> Mes Stages</a></li> -->
+            <!-- <li><a href="#"><i class="fas fa-comments"></i> Discussions</a></li> -->
+        </ul>
+            <hr>
+        <ul>
+            <!-- <li><i class="fas fa-clock"></i><span class="text">Historique</span></li> -->
+            <!-- <li><i class="fas fa-thumbs-up"></i><span class="text">Vidéos "J'aime"</span></li> -->
+            <li><a href="parametres.html"><i class="fas fa-cog"></i><span class="text">Paramètres</span></a></li>
+        </ul>
+    </div>
+
+    <div class="content" id="content">
+        <!-- Modal pour la vue des informations -->
+        <div class="modal fade" id="viewInfos" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabelViewInfos">Mes informations</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-bordered table-striped table-primary table-hover">
+                        <tbody id="view-table-body">
+                            <tr>
+                                <th>ROLE:</th>
+                                <td id="role"></td>
+                            </tr>
+                            <tr>
+                                <th>NOM(S):</th>
+                                <td id="nom"></td>
+                            </tr>
+                            <tr>
+                                <th>PRENOM(S):</th>
+                                <td id="prenom"></td>
+                            </tr>
+                            <tr>
+                                <th>DATE DE NAISSANCE:</th>
+                                <td id="dateNaissance"></td>
+                            </tr>
+                            <tr>
+                                <th>LIEU DE NAISSANCE:</th>
+                                <td id="lieuNaissance"></td>
+                            </tr>
+                            <tr>
+                                <th>SEXE:</th>
+                                <td id="sexe"></td>
+                            </tr>
+                            <tr>
+                                <th>ADRESSE:</th>
+                                <td id="adresse"></td>
+                            </tr>
+                            <tr>
+                                <th>TÉLÉPHONE:</th>
+                                <td id="telephone"></td>
+                            </tr>
+                            <tr>
+                                <th>ADRESSE MAIL:</th>
+                                <td id="Email"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quitter</button>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        <!-- Modal pour le changement de mot de passe -->
+        <div class="modal fade" id="changePassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabelChangeMdp">Changer de mot de passe</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Pour afficher le message de succes -->
+                    <small id="successMessage"> </small>
+
+                    <form id="formChangePassword">
+                    <div class="mb-3">
+                        <label for="emailExist" class="col-form-label">Adresse Email:</label>
+                        <input type="email" class="form-control" name="email" id="email" placeholder="Entrer votre email">
+                        <small class="error_message" id="emailError"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Password" class="col-form-label">Mot de passe:</label>
+                        <input type="password" class="form-control" name="mot_de_Passe" id="password" autocomplete="on" placeholder="Entrer votre mot de passe">
+                        <small class="error_message" id="passwordError"></small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="newPassword" class="col-form-label">Nouveau mot de passe:</label>
+                        <input type="password" class="form-control" name="newPassword" id="newPassword" autocomplete="on" placeholder="Entrer votre nouveau mot de passe">
+                        <small class="error_message" id="newPasswordError"></small>
+                    </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Quitter</button>
+                <button type="submit" class="btn btn-outline-success" form="formChangePassword" onclick="soumettreForm()">Envoyer</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        <!-- icon de profile sur la navbarre -->
+        <div class="profile-container" id="profile">
+            <img src="../../image/téléchargé (3).png" alt="Photo de profil"><br>
+            <a href="parametres.html"><i class="fa-solid fa-user"></i> Profile</a><br>
+            <i class="fa-solid fa-right-from-bracket" onclick="log_out()"> LogOut</i> 
+        </div>
+
+        <!-- Vue des informations  -->
+        <div class="btn btn-rapport">
+            <button type="button" id="viewInfosButton" data-bs-toggle="modal" data-bs-target="#viewInfos">Mon profile</button>
+        </div>
+        <!-- Changer de mot de passe -->
+        <div class="btn btn-rapport">
+            <button type="button" data-bs-toggle="modal" data-bs-target="#changePassword">Changer de mot de passe</button>
+        </div>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../bootstrap-5.0.2-dist/js/bootstrap.min.js"></script>
+    <script src="../../javaScript/utilisateurs.js"></script>
+
+    <!-- script pour afficher le profile -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const viewInfoButton = document.getElementById('viewInfosButton'); // bouton pour ouvrir le modal
+    
+            viewInfoButton.addEventListener('click', async function() {
+                const userId = localStorage.getItem('storageKey'); // Récupération de l'ID de l'utilisateur stocké dans localStorage
+                if (userId) {
+                    try {
+                        const response = await fetch(`http://localhost:5000/users/${userId}`);
+    
+                        if (!response.ok) {
+                            throw new Error('Erreur lors de la récupération des informations de l\'utilisateur');
+                        }
+    
+                        const user = await response.json();
+                        
+                        if (user) { // Vérification que l'utilisateur existe
+                            document.getElementById('role').textContent = user.nomRole || 'N/A';
+                            document.getElementById('nom').textContent = user.nom || 'N/A';
+                            document.getElementById('prenom').textContent = user.prenom || 'N/A';
+                            document.getElementById('dateNaissance').textContent = user.dateNais || 'N/A';
+                            document.getElementById('lieuNaissance').textContent = user.lieuNais || 'N/A';
+                            document.getElementById('sexe').textContent = user.sexe || 'N/A';
+                            document.getElementById('adresse').textContent = user.adresse || 'N/A';
+                            document.getElementById('telephone').textContent = user.numeroTel || 'N/A';
+                            document.getElementById('Email').textContent = user.email || 'N/A';
+                        } else {
+                            console.error('Utilisateur non trouvé');
+                        }
+    
+                    } catch (error) {
+                        console.error('Erreur serveur:', error.message);
+                    }
+                } else {
+                    console.error('Utilisateur non connecté');
+                }
+            });
+        });
+    </script>    
+
+    <!-- script pour changer de mots de passe -->
+    <script>
+        // Script pour la récupération des données du formulaire pour les renvoyer au serveur Express.
+        function soumettreForm() {
+            document.getElementById('formChangePassword').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Empêche la soumission par défaut du formulaire
+
+                // Fonction pour afficher un message d'erreur
+                function showErrorModal(element, message) {
+                    element.style.display = 'block'; // Affiche un message d'erreur
+                    element.textContent = message;
+                }
+
+                // Fonction pour cacher un message d'erreur
+                function hideErrorModal(element) {
+                    element.style.display = 'none'; // Cache le message d'erreur
+                }
+
+                // Récupération des valeurs des champs du formulaire
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+                const newPassword = document.getElementById('newPassword').value.trim();
+
+                let formValidModal = true; // Utilisée pour suivre l'état de la validation du formulaire
+
+                hideErrorModal(document.getElementById('emailError'));
+                hideErrorModal(document.getElementById('passwordError'));
+                hideErrorModal(document.getElementById('newPasswordError'));
+
+                // Vérifications des champs
+                if (email === '') {
+                    showErrorModal(document.getElementById('emailError'), 'L\'adresse mail ne doit pas être vide');
+                    formValidModal = false;
+                } else if (!/\S+@\S+\.\S+/.test(email)) {
+                    showErrorModal(document.getElementById('emailError'), 'Le format de l\'adresse mail est incorrect');
+                    formValidModal = false;
+                }
+
+                if (password === '') {
+                    showErrorModal(document.getElementById('passwordError'), 'Le mot de passe ne doit pas être vide');
+                    formValidModal = false;
+                }
+
+                if (newPassword === '') {
+                    showErrorModal(document.getElementById('newPasswordError'), 'Le nouveau mot de passe ne doit pas être vide');
+                    formValidModal = false;
+                }
+
+                if (formValidModal) {
+                    const formData = new FormData(event.target);
+                    const data = {
+                    email: formData.get('email'),
+                    password: formData.get('mot_de_Passe'),
+                    newPassword: formData.get('newPassword')
+                    };
+
+                    try {
+                    const response = await fetch('http://localhost:5000/users/changeMdps', {
+                        method: 'POST',
+                        headers: {
+                        'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    });
+                   
+                    if (!response.ok) throw new Error("Erreur serveur");
+
+                    // Afficharge du message de succès
+                    const successMessage = document.getElementById('successMessage');
+                    successMessage.textContent = "Mots de passe changer avec succes";
+                    successMessage.style.display = "block";
+
+                    // Attendre 3 secondes avant rechargement de la page
+                    setTimeout(() => {
+                        location.reload();
+                    }, 3000);
+                    } catch (error) {
+                    console.error('error:', error);
+                    showErrorModal(document.getElementById('emailError'), "Échec de changement. Veuillez réessayer !");
+                    }
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            soumettreForm();
+        });
+    </script>
+</body>
+</html>
